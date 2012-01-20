@@ -16,6 +16,7 @@ public class Labratyo {
         System.out.println("COmmittedDDDDD");
         System.out.println("");
         System.out.println("fgfjfidg");
+        System.out.println("fgfjfidg");
     
     }
 }
