@@ -19,6 +19,7 @@ public class Labratyo {
         System.out.println("fgfjfidg");
         System.out.println("ammuuuuu");
         System.out.println("ammuuuuu");
+        System.out.println("ambbuuuuuu");
     
     }
 }
