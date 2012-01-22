@@ -20,6 +20,7 @@ public class harjoitus  {
  */ 
     private static Scanner lukija = new Scanner(System.in);
     public static int kerta = 1;
+    public static String nimi;
     
     public static boolean tarkistaNumero(int luku) {
         if (luku > 0 && luku < 17)
@@ -36,6 +37,14 @@ public class harjoitus  {
     public static int getKerta() {
         return kerta;
     }
+    
+    public static String getNimi() {
+        return nimi;
+    }
+    
+    public static int getVuoro() {
+        return kerta;
+    }
   
 
   public static void main(String[] args) {
@@ -46,15 +55,15 @@ public class harjoitus  {
     System.out.print("Tervetuloa muistipeliin!\n" +
        "Valitse kortti antamalla numero 1-16 väliltä\n" +
        "Väärä syöte tukitaan virheeksi! \n" + 
-       "Paina enter jatkaaksesi.");
+       "Syötä nimesi ja paina enter jatkaaksesi.");
       
-        lukija.nextLine();
+        nimi=lukija.nextLine();
       
       
       
-      while (true) {  // "ikuinen" toisto keskeytetään break-lauseella
-
-       if (kerta==3) {
+      while (true) {  // "ikuinen" toisto keskeytetään break-lauseella   
+          
+          if (kerta==3) {
            if (parienTarkastus(valinta1, valinta2)) {
                System.out.println("Löysit samat parit!");
            }
@@ -62,7 +71,7 @@ public class harjoitus  {
        }
           
        // kirjoitetaan kehotemerkki eli "prompti"
-       System.out.println("Anna luku 1-16 väliltä");
+       System.out.println("Hei! " + nimi + " \n Anna luku 1-16 väliltä");
        
        
        vastaus=lukija.nextInt();
