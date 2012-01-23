@@ -40,12 +40,15 @@ public class harjoitus  {
        
        if (esim.tarkistaNumero(vastaus)==true && esim.getKerta() == 1) {
               System.out.println("Valitsit ensimmäisen kortin. Se on " + esim.laitaKuva(vastaus) + ".");
+              esim.vaihdaKerta();
               esim.setVastaus1(vastaus);
+              
        }
        else if (esim.tarkistaNumero(vastaus)==true && esim.getKerta() == 2) {
               System.out.println("Valitsit toisen kortin. Se on " + esim.laitaKuva(vastaus) + ".");
               esim.setVastaus2(vastaus);
-              esim.ilmoitus1(esim.arvaus1(esim.getVastaus1(),esim.getVastaus2()));
+              esim.vaihdaKerta();
+              System.out.println(esim.ilmoitus1(esim.arvaus1(esim.getVastaus1(),esim.getVastaus2())));
        }     
        else
          System.out.println("ERROR: Virheellinen komento! Syötä luku 1-16 väliltä!");

@@ -99,7 +99,7 @@ public class Peli {
     }
     
     public boolean tarkistaNumero(int luku) {
-        if (luku > 0 && luku < 16)
+        if (luku > 0 && luku < 17)
             return true;
         else return false;
     }
