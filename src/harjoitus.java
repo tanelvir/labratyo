@@ -48,7 +48,7 @@ public class harjoitus  {
               System.out.println("Valitsit toisen kortin. Se on " + esim.laitaKuva(vastaus) + ".");
               esim.setVastaus2(vastaus);
               esim.vaihdaKerta();
-              System.out.println(esim.ilmoitus1(esim.arvaus1(esim.getVastaus1(),esim.getVastaus2())));
+              System.out.println(esim.ilmoitus1(esim.arvausP1(esim.getVastaus1(),esim.getVastaus2())));
        }     
        else
          System.out.println("ERROR: Virheellinen komento! Syötä luku 1-16 väliltä!");

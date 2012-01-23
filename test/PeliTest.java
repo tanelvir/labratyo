@@ -37,14 +37,14 @@ public class PeliTest {
     @Test
     public void oikeinKortit() { 
         jokin.sekoitaPakka();
-        boolean totuus = jokin.arvaus1(1, 9);    
+        boolean totuus = jokin.arvausP1(1, 9);    
         assertTrue(totuus);
     }
     
     @Test
     public void vaarinKortit() { 
         jokin.sekoitaPakka();
-        boolean totuus = jokin.arvaus1(1, 7);    
+        boolean totuus = jokin.arvausP1(1, 7);    
         assertFalse(totuus);
     }
     
@@ -60,14 +60,14 @@ public class PeliTest {
     @Test
     public void vuoroVaihtuu() { 
         jokin.sekoitaPakka();
-        jokin.arvaus1(8, 16);
+        jokin.arvausP1(8, 16);
         assertTrue(jokin.getVuoro()==2);
     }
     
     @Test
     public void samatKortit() { 
         jokin.sekoitaPakka();
-        boolean totuus = jokin.arvaus1(1, 1);  
+        boolean totuus = jokin.arvausP1(1, 1);  
         assertFalse(totuus);
     }
     
@@ -81,28 +81,28 @@ public class PeliTest {
     @Test
     public void pariPoistuu() {
         jokin.sekoitaPakka();
-        jokin.arvaus1(1, 9);
+        jokin.arvausP1(1, 9);
         assertTrue(jokin.korttejaYhteensa()==14);
     }
     
     @Test
     public void pelaaja1Saapisteen() {
         jokin.sekoitaPakka();
-        jokin.arvaus1(2, 10);
+        jokin.arvausP1(2, 10);
         assertTrue(jokin.getPisteet(1)==1);
     }
     
     @Test
     public void pelaaja2Saapisteen() {
         jokin.sekoitaPakka();
-        jokin.arvaus2(2, 10);
+        jokin.arvausP2(2, 10);
         assertTrue(jokin.getPisteet(2)==1);
     }
 
     @Test
     public void pariEipoistu() {
         jokin.sekoitaPakka();
-        jokin.arvaus1(1, 2);
+        jokin.arvausP1(1, 2);
         assertTrue(jokin.korttejaYhteensa()==16);
     }
 }
