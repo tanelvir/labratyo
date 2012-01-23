@@ -62,7 +62,7 @@ public class Peli {
     }
     
     
-    public boolean arvaus1(int valinta1, int valinta2){
+    public boolean arvausP1(int valinta1, int valinta2){
         if (etsiKortti(valinta1)==false || etsiKortti(valinta2)==false)
             return false;
         if (valinta1==valinta2)
@@ -80,7 +80,7 @@ public class Peli {
         }
     }
     
-    public boolean arvaus2(int valinta1, int valinta2){
+    public boolean arvausP2(int valinta1, int valinta2){
         if (etsiKortti(valinta1)==false || etsiKortti(valinta2)==false)
             return false;
         if (valinta1==valinta2)
