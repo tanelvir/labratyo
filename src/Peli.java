@@ -56,11 +56,17 @@ public class Peli {
     
     public String ilmoitus1(boolean totta) {
         if (totta==true) {
-            return "Onneksi olkoon " + getNimi1() + "! sait pisteen";
+            return "Onneksi olkoon " + getNimi1() + "! sait pisteen.";
         }
         else return "Valitettavasti " + getNimi1() + " et löytänyt paria :(";
     }
     
+    public String ilmoitus2(boolean totta) {
+        if (totta==true) {
+            return "Onneksi olkoon " + getNimi2() + "! sait pisteen.";
+        }
+        else return "Valitettavasti " + getNimi2() + " et löytänyt paria :(";
+    }
     
     public boolean arvausP1(int valinta1, int valinta2){
         if (etsiKortti(valinta1)==false || etsiKortti(valinta2)==false)

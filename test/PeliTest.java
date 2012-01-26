@@ -60,7 +60,7 @@ public class PeliTest {
     @Test
     public void vuoroVaihtuu() { 
         jokin.sekoitaPakka();
-        jokin.arvausP1(8, 16);
+        jokin.arvausP1(9, 16);
         assertTrue(jokin.getVuoro()==2);
     }
     
