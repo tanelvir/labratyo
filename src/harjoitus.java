@@ -14,9 +14,10 @@ import java.util.*;
 public class harjoitus  {
 
   public static void main(String[] args) {
-      String nimi1;
-      String nimi2 = "amma";
-      Peli esim = new Peli();
+      String nimi;
+      Kortti peli = new Kortti();
+      Pelaaja pelaaja1;
+      Pelaaja pelaaja2;
       Scanner lukija = new Scanner(System.in);
       int vastaus;
       int pelaajamaara = 0;
@@ -28,8 +29,8 @@ public class harjoitus  {
        "Syötä nimesi ja paina enter jatkaaksesi. \n");
       
         
-        nimi1 = lukija.nextLine();
-        esim.setPelaaja1nimi(nimi1);
+        nimi = lukija.nextLine();
+        pelaaja1 = new Pelaaja(nimi);
         
         while (true) {
             System.out.println("Valitse pelaajamäärä: 1 tai 2");
@@ -41,37 +42,35 @@ public class harjoitus  {
             if (pelaajamaara==2) {
                 mod=false;
                 System.out.println("Pelaajan 2 nimi?");
-                nimi2 = lukija.nextLine();
+                nimi = lukija.nextLine();
                 lukija.nextLine();
-                esim.setPelaaja2nimi(nimi2);
+                pelaaja2 = new Pelaaja(nimi);
                 break;
             }
             else System.out.println("Valitse 1 tai 2!");
         }
       
       
-      esim.sekoitaPakka();
+      peli.sekoitaPakka();
             
       
       if (mod=true){
          while (true) {
 
-            System.out.println("Hei! " + nimi1 + " \nAnna luku 1-16 väliltä");
+            System.out.println("Hei! " + nimi + " \nAnna luku 1-16 väliltä");
 
 
             vastaus=lukija.nextInt();
 
-            if (esim.tarkistaNumero(vastaus)==true && esim.getKerta() == 1) {
-                    System.out.println("Valitsit ensimmäisen kortin. Se on " + esim.laitaKuva(vastaus) + ".");
-                    esim.vaihdaKerta();
-                    esim.setVastaus1(vastaus);
+            if (peli.tarkistaNumero(vastaus)==true && pelaaja1.getKerta()==1) {
+                    System.out.println("Valitsit ensimmäisen kortin. Se on " + peli.symboli(vastaus) + ".");
+                    pelaaja1.ekaKerta(vastaus);
 
             }
-            else if (esim.tarkistaNumero(vastaus)==true && esim.getKerta() == 2) {
-                    System.out.println("Valitsit toisen kortin. Se on " + esim.laitaKuva(vastaus) + ".");
-                    esim.setVastaus2(vastaus);
-                    esim.vaihdaKerta();
-                    System.out.println(esim.ilmoitus1(esim.arvausP1(esim.getVastaus1(),esim.getVastaus2())));
+            else if (peli.tarkistaNumero(vastaus)==true && pelaaja1.getKerta()==2) {
+                    System.out.println("Valitsit toisen kortin. Se on " + peli.symboli(vastaus) + ".");
+                    pelaaja1.tokakerta(vastaus);
+                    pelaaja1.arvausKerta();
             }     
             else
                 System.out.println("ERROR: Virheellinen komento! Syötä luku 1-16 väliltä!");
@@ -79,11 +78,11 @@ public class harjoitus  {
             }
         }     
   
-    if (mod=false) {
+  /*  if (mod=false) {
          while (true) {
              
-            if (esim.getVuoro()==1) {
-                System.out.println("Pelaajan " + nimi1 + " vuoro.");
+            if (pelaaja1.getVuoro()==true) {
+                System.out.println("Pelaajan " + pelaaja + " vuoro.");
              
              
                 System.out.println("Hei! " + nimi1 + " \nAnna luku 1-16 väliltä");
@@ -130,7 +129,6 @@ public class harjoitus  {
                 else
                     System.out.println("ERROR: Virheellinen komento! Syötä luku 1-16 väliltä!");
             }
-         }
-    }
+         } */
   }
 }
