@@ -9,9 +9,15 @@ import labra.Kortti;
  */
 
 /**
+ * 
+ * Tämän luokan tarkoituksena on luoda pelaaja, joka voi valita kortin
+ * ja jolla on oma pistetili. Kun pelataan kaksinpeliä luodaan 2 pelaajaa. 
+ * Täydennyksiä on vielä tulossa.
  *
  * @author tanelvir
  */
+
+
 public class Pelaaja {
     
     String nimi;

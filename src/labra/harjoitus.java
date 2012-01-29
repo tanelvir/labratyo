@@ -9,6 +9,9 @@ import java.util.Scanner;
  */
 
 /**
+ * 
+ * Tämä on harjoituskehys, jossa testaan luokkien toimivuutta.
+ * Selkeät ohjeet näytöllä kertovat mitä pelaajan tulee tehdä.
  *
  * @author taneli
  */

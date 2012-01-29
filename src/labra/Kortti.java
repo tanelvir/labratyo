@@ -9,6 +9,10 @@ import java.util.HashMap;
  */
 
 /**
+ * 
+ * Tämä on oikeastaan kortti(pakka). Eli siis tällä hetkellä tämä käsittää HashMapin, 
+ * jossa on kortteja.
+ * Teen todennäköisesti pakalle oman luokan kun pääsen graafiselle puolelle.
  *
  * @author tanelvir
  */
