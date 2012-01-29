@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 
+import labra.Pelaaja;
+import labra.Kortti;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -11,9 +13,15 @@ import static org.junit.Assert.*;
  * @author taneli
  */
 public class PeliTest {
+    private Pelaaja pelaaja;
+    private Kortti kortti;
     
-    private Peli jokin = new Peli();
-    
+    /**
+     * 
+     * sekoitetaan pakkaa
+     * @return
+     * 
+     */
     public PeliTest() {
     }
       
@@ -28,6 +36,9 @@ public class PeliTest {
     
     @Before
     public void setUp() {
+        pelaaja = new Pelaaja("joku");
+        kortti = new Kortti();
+        kortti.sekoitaPakka();
     }
     
     @After
@@ -35,75 +46,67 @@ public class PeliTest {
     }
 
     @Test
-    public void oikeinKortit() { 
-        jokin.sekoitaPakka();
-        boolean totuus = jokin.arvausP1(1, 9);    
+    public void oikeinKortit() {
+        boolean totuus = pelaaja.arvausKerta(1, 9);    
         assertTrue(totuus);
     }
     
     @Test
     public void vaarinKortit() { 
-        jokin.sekoitaPakka();
-        boolean totuus = jokin.arvausP1(1, 7);    
+        boolean totuus = pelaaja.arvausKerta(1, 7);    
         assertFalse(totuus);
     }
     
     @Test
-    public void korttiLoytyy() {        
-        jokin.sekoitaPakka();
-        boolean valinta1 = jokin.tarkistaNumero(17);   
-        boolean valinta2 = jokin.tarkistaNumero(0);   
+    public void korttiLoytyy() {
+        boolean valinta1 = kortti.tarkistaNumero(17);   
+        boolean valinta2 = kortti.tarkistaNumero(0);   
         assertFalse(valinta1);
         assertFalse(valinta2);
     }
     
     @Test
     public void vuoroVaihtuu() { 
-        jokin.sekoitaPakka();
-        jokin.arvausP1(9, 16);
-        assertTrue(jokin.getVuoro()==2);
+        pelaaja.ekaKerta(1);
+        pelaaja.ekaKerta(2);
+        assertFalse(pelaaja.getVuoro()==2);
     }
     
     @Test
     public void samatKortit() { 
-        jokin.sekoitaPakka();
-        boolean totuus = jokin.arvausP1(1, 1);  
+        boolean totuus = pelaaja.arvausKerta(1, 1);  
         assertFalse(totuus);
     }
     
     @Test
-    public void nimiOikein() {
-        jokin.sekoitaPakka();
-        jokin.setPelaaja1nimi("matti");
-        assertTrue(jokin.getNimi1().equals("matti"));
+    public void kertaVaihtuu() {
+        pelaaja.ekaKerta(2);
+        assertTrue(pelaaja.getKerta()==2);
     }
     
     @Test
     public void pariPoistuu() {
-        jokin.sekoitaPakka();
-        jokin.arvausP1(1, 9);
-        assertTrue(jokin.korttejaYhteensa()==14);
+        pelaaja.arvausKerta(1, 9);
+        assertTrue(pelaaja.korttienLkm()==14);
     }
     
     @Test
     public void pelaaja1Saapisteen() {
-        jokin.sekoitaPakka();
-        jokin.arvausP1(2, 10);
-        assertTrue(jokin.getPisteet(1)==1);
+        pelaaja.arvausKerta(3, 11);
+        assertTrue(pelaaja.getPisteet()==1);
     }
     
     @Test
-    public void pelaaja2Saapisteen() {
-        jokin.sekoitaPakka();
-        jokin.arvausP2(2, 10);
-        assertTrue(jokin.getPisteet(2)==1);
+    public void samastaParistaeiPisteita() {
+        pelaaja.arvausKerta(3, 11);
+        pelaaja.arvausKerta(3, 11);
+        assertFalse(pelaaja.getPisteet()==2);
     }
 
     @Test
     public void pariEipoistu() {
-        jokin.sekoitaPakka();
-        jokin.arvausP1(1, 2);
-        assertTrue(jokin.korttejaYhteensa()==16);
+        pelaaja.arvausKerta(1, 2);
+        assertTrue(pelaaja.korttienLkm()==16);
     }
 }
 

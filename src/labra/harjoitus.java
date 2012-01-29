@@ -1,3 +1,6 @@
+package labra;
+
+import labra.Kortti;
 import java.util.Scanner;
 
 /*
@@ -12,6 +15,11 @@ import java.util.Scanner;
 import java.util.*;
 
 public class harjoitus  {
+    
+    /**
+     * tämä on maini, jossa testataan näin aluksi yksinpeliä. Intin parse täytyy hoitaa kuntoon, jotta ei ohjelma kaadu.
+     * @return
+     */
 
   public static void main(String[] args) {
       String nimi;
@@ -70,7 +78,7 @@ public class harjoitus  {
             else if (peli.tarkistaNumero(vastaus)==true && pelaaja1.getKerta()==2) {
                     System.out.println("Valitsit toisen kortin. Se on " + peli.symboli(vastaus) + ".");
                     pelaaja1.tokakerta(vastaus);
-                    pelaaja1.arvausKerta();
+                    pelaaja1.arvausKerta(pelaaja1.getValinta1(), pelaaja1.getValinta2());
             }     
             else
                 System.out.println("ERROR: Virheellinen komento! Syötä luku 1-16 väliltä!");
