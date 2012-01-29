@@ -17,7 +17,7 @@ import labra.Kortti;
  * @author tanelvir
  */
 
-
+    
 public class Pelaaja {
     
     String nimi;
