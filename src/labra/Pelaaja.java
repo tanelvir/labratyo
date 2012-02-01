@@ -113,10 +113,10 @@ public class Pelaaja {
     
     public boolean arvausKerta(int valinta1, int valinta2) {
         if (peli.etsiKortti(valinta1)==false || peli.etsiKortti(valinta2)==false) {
-            return false;
+            System.out.println("Korttiasi ei löydy!");
         }
         if (valinta1==valinta2) {
-            return false;
+            System.out.println("Ei samoja kortteja!");
         }
         if (peli.symboli(valinta1).equals(peli.symboli(valinta2))) {
             pisteet++;
@@ -192,13 +192,11 @@ public class Pelaaja {
      */
     
     
-    public void vaihdaKerta() {
-        if (kerta==3) {
-            vuoro=2;
-            this.kerta=1;
-            this.kerta = kerta;
+    public void vaihdaKerta() {      
+        if (kerta%2==0) {     
+            kerta=1;
         }
-        else kerta++;     
+        else kerta++;
     }
     
 }

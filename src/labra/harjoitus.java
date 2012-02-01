@@ -19,26 +19,20 @@ import java.util.*;
 
 public class harjoitus  {
     
-    /**
+    /*
      * tämä on maini, jossa testataan näin aluksi yksinpeliä. Intin parse täytyy hoitaa kuntoon, jotta ei ohjelma kaadu.
      * @return
      */
+    
+    private static Scanner lukija = new Scanner(System.in);
+    private static Pelaaja pelaaja1;
+    private static Pelaaja pelaaja2;
+    private static Kortti peli;
 
-  public static void main(String[] args) {
-      String nimi;
-      Kortti peli = new Kortti();
-      Pelaaja pelaaja1;
-      Pelaaja pelaaja2;
-      Scanner lukija = new Scanner(System.in);
-      int vastaus;
-      int pelaajamaara = 0;
-      boolean mod;
-
-    System.out.print("Tervetuloa muistipeliin!\n" +
-       "Valitse kortti antamalla numero 1-16 väliltä\n" +
-       "Väärä syöte tukitaan virheeksi! \n" + 
-       "Syötä nimesi ja paina enter jatkaaksesi. \n");
-      
+    public static boolean pelaajamaaranValinta() {
+        int pelaajamaara = 0;
+        String nimi;
+        
         
         nimi = lukija.nextLine();
         pelaaja1 = new Pelaaja(nimi);
@@ -47,66 +41,88 @@ public class harjoitus  {
             System.out.println("Valitse pelaajamäärä: 1 tai 2");
             pelaajamaara = lukija.nextInt();
             if (pelaajamaara==1) {
-                  mod=true;
-                  break;
+                  return true;
             }
             if (pelaajamaara==2) {
-                mod=false;
                 System.out.println("Pelaajan 2 nimi?");
                 nimi = lukija.nextLine();
                 lukija.nextLine();
                 pelaaja2 = new Pelaaja(nimi);
-                break;
+                return false;
             }
             else System.out.println("Valitse 1 tai 2!");
         }
+    }
+    
+    public static void yhdenPelaajanpeli(Pelaaja pelaaja) {
+        int vastaus;
+        while (pelaaja.korttienLkm()>0) {
+
+            System.out.println("Hei! " + pelaaja.getNimi() + " \nAnna luku 1-16 väliltä");
+
+
+            vastaus=lukija.nextInt();
+
+            if (peli.tarkistaNumero(vastaus)==true && pelaaja.getKerta()==1) {
+                    System.out.println("Valitsit ensimmäisen kortin. Se on " + peli.symboli(vastaus) + ".");
+                    pelaaja.ekaKerta(vastaus);
+
+            }
+            else if (peli.tarkistaNumero(vastaus)==true && pelaaja.getKerta()==2) {
+                    System.out.println("Valitsit toisen kortin. Se on " + peli.symboli(vastaus) + ".");
+                    pelaaja.tokakerta(vastaus);
+                    pelaaja.arvausKerta(pelaaja.getValinta1(), pelaaja.getValinta2());
+            }     
+            else
+                System.out.println("ERROR: Virheellinen komento! Syötä luku 1-16 väliltä!");
+
+            }
+        System.out.println("Peli päättyi " + pelaaja.getNimi() + "! Sait pisteitä: " + pelaaja.getPisteet());
+    }
+    
+    public static void kahdenPelaajanpeli(Pelaaja pelaaja1, Pelaaja pelaaja2) {
+        int vastaus;     
+    }
+    
+    
+    
+    public static void main(String[] args) {
+      boolean mod;
+      peli = new Kortti();
+
+    System.out.print("Tervetuloa muistipeliin!\n" +
+       "Valitse kortti antamalla numero 1-16 väliltä\n" +
+       "Väärä syöte tukitaan virheeksi! \n" + 
+       "Syötä nimesi ja paina enter jatkaaksesi. \n");
+        
+        mod = pelaajamaaranValinta();
       
       
       peli.sekoitaPakka();
             
       
       if (mod=true){
-         while (true) {
-
-            System.out.println("Hei! " + nimi + " \nAnna luku 1-16 väliltä");
-
-
-            vastaus=lukija.nextInt();
-
-            if (peli.tarkistaNumero(vastaus)==true && pelaaja1.getKerta()==1) {
-                    System.out.println("Valitsit ensimmäisen kortin. Se on " + peli.symboli(vastaus) + ".");
-                    pelaaja1.ekaKerta(vastaus);
-
-            }
-            else if (peli.tarkistaNumero(vastaus)==true && pelaaja1.getKerta()==2) {
-                    System.out.println("Valitsit toisen kortin. Se on " + peli.symboli(vastaus) + ".");
-                    pelaaja1.tokakerta(vastaus);
-                    pelaaja1.arvausKerta(pelaaja1.getValinta1(), pelaaja1.getValinta2());
-            }     
-            else
-                System.out.println("ERROR: Virheellinen komento! Syötä luku 1-16 väliltä!");
-
-            }
+         yhdenPelaajanpeli(pelaaja1);
         }     
   
-  /*  if (mod=false) {
+    /** if (mod=false) {
          while (true) {
              
-            if (pelaaja1.getVuoro()==true) {
-                System.out.println("Pelaajan " + pelaaja + " vuoro.");
+            if (pelaaja1.getVuoro()>3) {
+                System.out.println("Pelaajan " + pelaaja1.getNimi() + " vuoro.");
              
              
-                System.out.println("Hei! " + nimi1 + " \nAnna luku 1-16 väliltä");
+                System.out.println("Hei! " +pelaaja1.getNimi() + " \nAnna luku 1-16 väliltä");
 
                 vastaus=lukija.nextInt();
 
-                if (esim.tarkistaNumero(vastaus)==true && esim.getKerta() == 1) {
+                if (peli.tarkistaNumero(vastaus)==true && pelaaja1.getKerta() == 1) {
                         System.out.println("Valitsit ensimmäisen kortin. Se on " + esim.laitaKuva(vastaus) + ".");
-                        esim.vaihdaKerta();
-                        esim.setVastaus1(vastaus);
+                        pelaaja1.vaihdaKerta();
+                        pelaaja1.ekaKerta(vastaus);
 
                 }
-                else if (esim.tarkistaNumero(vastaus)==true && esim.getKerta() == 2) {
+                else if (peli.tarkistaNumero(vastaus)==true && esim.getKerta() == 2) {
                         System.out.println("Valitsit toisen kortin. Se on " + esim.laitaKuva(vastaus) + ".");
                         esim.setVastaus2(vastaus);
                         esim.vaihdaKerta();                
@@ -140,6 +156,6 @@ public class harjoitus  {
                 else
                     System.out.println("ERROR: Virheellinen komento! Syötä luku 1-16 väliltä!");
             }
-         } */
+         } **/
   }
 }
