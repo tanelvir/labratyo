@@ -1,6 +1,7 @@
 package labra;
 
 import labra.Kortti;
+import labra.KorttiPakka;
 import java.util.Scanner;
 
 /*
@@ -46,7 +47,7 @@ public class harjoitus  {
         }
     }
     
-    public static void yhdenPelaajanpeli(Pelaaja pelaaja, Kortti peli) {
+    public static void yhdenPelaajanpeli(Pelaaja pelaaja, KorttiPakka peli) {
         int vastaus;
         while (peli.korttejaYhteensa()>0) {
 
@@ -55,13 +56,13 @@ public class harjoitus  {
 
             vastaus=lukija.nextInt();
 
-            if (peli.tarkistaNumero(vastaus)==true && pelaaja.getKerta()==1) {
-                    System.out.println("Valitsit ensimmäisen kortin. Se on " + peli.symboli(vastaus) + ".");
+            if (peli.etsiKortti(vastaus)==true && pelaaja.getKerta()==1) {
+                    System.out.println("Valitsit ensimmäisen kortin. Se on " + peli.getKortti(vastaus) + ".");
                     pelaaja.ekaKerta(vastaus);
 
             }
-            else if (peli.tarkistaNumero(vastaus)==true && pelaaja.getKerta()==2) {
-                    System.out.println("Valitsit toisen kortin. Se on " + peli.symboli(vastaus) + ".");
+            else if (peli.etsiKortti(vastaus)==true && pelaaja.getKerta()==2) {
+                    System.out.println("Valitsit toisen kortin. Se on " + peli.getKortti(vastaus) + ".");
                     pelaaja.tokakerta(vastaus);
                     pelaaja.arvausKerta(pelaaja.getValinta1(), pelaaja.getValinta2(), peli);
             }     
@@ -84,7 +85,7 @@ public class harjoitus  {
       String nimi;
       Pelaaja pelaaja1;
       Pelaaja pelaaja2;
-      Kortti peli;
+      KorttiPakka peli;
 
     System.out.print("Tervetuloa muistipeliin!\n" +
        "Valitse kortti antamalla numero 1-16 väliltä\n" +
@@ -96,8 +97,8 @@ public class harjoitus  {
         pelaaja1 = new Pelaaja(nimi);
         
         mod = pelaajamaaranValinta(pelaaja1);
-        peli = new Kortti();
-        peli.sekoitaPakka();
+        peli = new KorttiPakka();
+        peli.sekoitus();
             
       
       if (mod=true){

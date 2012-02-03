@@ -46,6 +46,24 @@ public class GUI extends JFrame {
     painikkeet.add(kortti9); painikkeet.add(kortti10); painikkeet.add(kortti11); painikkeet.add(kortti12);
     painikkeet.add(kortti13); painikkeet.add(kortti14); painikkeet.add(kortti15); painikkeet.add(kortti16);
     
+    kortti1.addActionListener(new toiminnot());
+    kortti2.addActionListener(new toiminnot());
+    kortti3.addActionListener(new toiminnot());
+    kortti4.addActionListener(new toiminnot());
+    kortti5.addActionListener(new toiminnot());
+    kortti6.addActionListener(new toiminnot());
+    kortti7.addActionListener(new toiminnot());
+    kortti8.addActionListener(new toiminnot());
+    kortti9.addActionListener(new toiminnot());
+    kortti10.addActionListener(new toiminnot());
+    kortti11.addActionListener(new toiminnot());
+    kortti12.addActionListener(new toiminnot());
+    kortti13.addActionListener(new toiminnot());
+    kortti14.addActionListener(new toiminnot());
+    kortti15.addActionListener(new toiminnot());
+    kortti16.addActionListener(new toiminnot());
+
+    
     JPanel teksti = new JPanel(new BorderLayout());
     teksti.add("North", otsikko);
     teksti.add("Center", tapahtuma);

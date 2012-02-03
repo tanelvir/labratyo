@@ -107,14 +107,14 @@ public class Pelaaja {
      * @return onko parit samat (true) vai erit (false) vai ylipäätänsä pätevät (false) ?
      */
     
-    public boolean arvausKerta(int valinta1, int valinta2, Kortti peli) {
+    public boolean arvausKerta(int valinta1, int valinta2, KorttiPakka peli) {
         if (peli.etsiKortti(valinta1)==false || peli.etsiKortti(valinta2)==false) {
             System.out.println("Korttiasi ei löydy!");
         }
         if (valinta1==valinta2) {
             System.out.println("Ei samoja kortteja!");
         }
-        if (peli.symboli(valinta1).equals(peli.symboli(valinta2))) {
+        if (peli.getKortti(valinta1).equals(peli.getKortti(valinta2))) {
             pisteet++;
             vaihdaKerta();
             peli.poista(valinta1, valinta2);

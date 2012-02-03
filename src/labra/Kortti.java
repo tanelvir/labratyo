@@ -18,92 +18,39 @@ import java.util.HashMap;
  */
 public class Kortti {
     
-    public HashMap<Integer,String> kortit = new HashMap<Integer,String>();
+    String kuva;
     
-    
-    /**
-     * 
-     * sekoitetaan pakkaa, eli luodaan ns. koko pakka.
-     * 
-     * @return kortit, joissa on symbolit (kuvat):
-     * 
-     */
-    
-    public HashMap sekoitaPakka() {
-        for (int i = 1; i <= 16; i++) {
-            kortit.put(i,laitaKuva(i));
-        }       
-        return kortit;
-    }
-    
-    /**
-     * 
-     * Tarkistetaan pelaajan syöttämä luku. Tämän metodin saatan poistaa jossain vaiheessa.
-     * 
-     * @param luku
-     * 
-     * @return löytyikö luku vai ei?
-     * 
-     */
-    
-    public boolean tarkistaNumero(int luku) {
-        if (luku > 0 && luku < 17)
-            return true;
-        else return false;
-    }
     
     /**
      * 
      * Katsotaan mikä kuva vastaa mitäkin numeroa. 
      * Tulen muuttamaan systeemin vielä järkeväksi esim. mathRandomilla.
      * 
+     * @param syötetty luku;
      * @return lukua vastaava symboli.
      * 
      */
     
-    public String laitaKuva(int luku) {
-        if (luku==1 || luku==9)
-            return "omena";
-        if (luku==2 || luku==10)
-            return "tuoli";
-        if (luku==3 || luku==11)
-            return "hevonen";
-        if (luku==4 || luku==12)
-            return "kivi";
-        if (luku==5 || luku==13)
-            return "kenkä";
-        if (luku==6 || luku==14)
-            return "porkkana";
-        if (luku==7 || luku==15)
-            return "koira";
-        if (luku==8 || luku==16)
-            return "ovi";
-        else return "virhe";
-    }
     
-    /**
-     * Etsitään löytyykö kortti pakasta. Varmaan korvaa tarkistaNumeron.
-     * 
-     * @param luku
-     * 
-     * @return löytyikö kortti vai ei? 
-     */
-    
-    
-    public boolean etsiKortti(int luku) {
-        if (kortit.containsKey(luku)==true)
-            return true;
-        else return false;                 
-    }
-    
-    /**
-     * Tämän hetken korttien lukumäärä (aina parillinen):
-     * 
-     * @return korttien määrä
-     */
-    
-    public int korttejaYhteensa() {
-        return kortit.size();
+    public Kortti(int numero) {
+        if (numero==1 || numero==9)
+            kuva = "omena";
+        if (numero==2 || numero==10)
+            kuva = "tuoli";
+        if (numero==3 || numero==11)
+            kuva = "hevonen";
+        if (numero==4 || numero==12)
+            kuva = "kivi";
+        if (numero==5 || numero==13)
+            kuva = "kenkä";
+        if (numero==6 || numero==14)
+            kuva = "porkkana";
+        if (numero==7 || numero==15)
+            kuva = "koira";
+        if (numero==8 || numero==16)
+            kuva = "ovi";
+        else kuva = "virhe";
+            
     }
     
     /**
@@ -114,20 +61,8 @@ public class Kortti {
      * @return numeroa vastaava symboli
      */
     
-    public String symboli(int luku) {
-        return kortit.get(luku);
-    }
-    
-    /**
-     * Kun pari ollaan löydetty, molemmat arvot avaimineen poistetaan.
-     * 
-     * @param numero1
-     * @param numero2 
-     */
-    
-    public void poista(int numero1, int numero2) {
-        kortit.remove(numero1);
-        kortit.remove(numero2);
+    public String toString(){
+        return kuva;
     }
     
 }
