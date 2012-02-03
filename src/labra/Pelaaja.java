@@ -23,7 +23,6 @@ public class Pelaaja {
     int pisteet;
     int kerta;
     int vuoro = 1;
-    Kortti peli;
     int Valinta1;
     int Valinta2;
     
@@ -40,8 +39,6 @@ public class Pelaaja {
         nimi = nimesi;
         pisteet = 0;
         kerta = 1;
-        peli = new Kortti();
-        peli.sekoitaPakka();
     }
     
     
@@ -110,7 +107,7 @@ public class Pelaaja {
      * @return onko parit samat (true) vai erit (false) vai ylipäätänsä pätevät (false) ?
      */
     
-    public boolean arvausKerta(int valinta1, int valinta2) {
+    public boolean arvausKerta(int valinta1, int valinta2, Kortti peli) {
         if (peli.etsiKortti(valinta1)==false || peli.etsiKortti(valinta2)==false) {
             System.out.println("Korttiasi ei löydy!");
         }
@@ -173,16 +170,6 @@ public class Pelaaja {
     
     public int getVuoro() {
         return vuoro;
-    }
-    
-    /**
-     * Tätä voisi fiksata viellä että ei tarvtisi kahdesta luokasta ravat tietoja
-     * 
-     * @return korttien tämänhetkinen lukumäärä 
-     */
-    
-    public int korttienLkm() {
-        return peli.korttejaYhteensa();
     }
     
     /**

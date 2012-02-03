@@ -25,17 +25,9 @@ public class harjoitus  {
      */
     
     private static Scanner lukija = new Scanner(System.in);
-    private static Pelaaja pelaaja1;
-    private static Pelaaja pelaaja2;
-    private static Kortti peli;
 
-    public static boolean pelaajamaaranValinta() {
+    public static boolean pelaajamaaranValinta(Pelaaja pelaaja1) {
         int pelaajamaara = 0;
-        String nimi;
-        
-        
-        nimi = lukija.nextLine();
-        pelaaja1 = new Pelaaja(nimi);
         
         while (true) {
             System.out.println("Valitse pelaajamäärä: 1 tai 2");
@@ -43,20 +35,20 @@ public class harjoitus  {
             if (pelaajamaara==1) {
                   return true;
             }
-            if (pelaajamaara==2) {
+            /**if (pelaajamaara==2) {
                 System.out.println("Pelaajan 2 nimi?");
                 nimi = lukija.nextLine();
                 lukija.nextLine();
                 pelaaja2 = new Pelaaja(nimi);
                 return false;
-            }
+            }**/
             else System.out.println("Valitse 1 tai 2!");
         }
     }
     
-    public static void yhdenPelaajanpeli(Pelaaja pelaaja) {
+    public static void yhdenPelaajanpeli(Pelaaja pelaaja, Kortti peli) {
         int vastaus;
-        while (pelaaja.korttienLkm()>0) {
+        while (peli.korttejaYhteensa()>0) {
 
             System.out.println("Hei! " + pelaaja.getNimi() + " \nAnna luku 1-16 väliltä");
 
@@ -71,7 +63,7 @@ public class harjoitus  {
             else if (peli.tarkistaNumero(vastaus)==true && pelaaja.getKerta()==2) {
                     System.out.println("Valitsit toisen kortin. Se on " + peli.symboli(vastaus) + ".");
                     pelaaja.tokakerta(vastaus);
-                    pelaaja.arvausKerta(pelaaja.getValinta1(), pelaaja.getValinta2());
+                    pelaaja.arvausKerta(pelaaja.getValinta1(), pelaaja.getValinta2(), peli);
             }     
             else
                 System.out.println("ERROR: Virheellinen komento! Syötä luku 1-16 väliltä!");
@@ -81,28 +73,35 @@ public class harjoitus  {
     }
     
     public static void kahdenPelaajanpeli(Pelaaja pelaaja1, Pelaaja pelaaja2) {
-        int vastaus;     
+        int vastaus;
+        
     }
     
     
     
     public static void main(String[] args) {
       boolean mod;
-      peli = new Kortti();
+      String nimi;
+      Pelaaja pelaaja1;
+      Pelaaja pelaaja2;
+      Kortti peli;
 
     System.out.print("Tervetuloa muistipeliin!\n" +
        "Valitse kortti antamalla numero 1-16 väliltä\n" +
        "Väärä syöte tukitaan virheeksi! \n" + 
        "Syötä nimesi ja paina enter jatkaaksesi. \n");
         
-        mod = pelaajamaaranValinta();
-      
-      
-      peli.sekoitaPakka();
+        
+        nimi = lukija.nextLine();
+        pelaaja1 = new Pelaaja(nimi);
+        
+        mod = pelaajamaaranValinta(pelaaja1);
+        peli = new Kortti();
+        peli.sekoitaPakka();
             
       
       if (mod=true){
-         yhdenPelaajanpeli(pelaaja1);
+         yhdenPelaajanpeli(pelaaja1, peli);
         }     
   
     /** if (mod=false) {
