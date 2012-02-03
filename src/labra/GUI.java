@@ -19,7 +19,7 @@ import java.awt.Color;
 public class GUI extends JFrame {
     
   private JTextArea tapahtuma = new JTextArea(7,7);
-  private JLabel otsikko = new JLabel("Muistipeli");
+  private JLabel otsikko = new JLabel("Pelaajanvuoro");
 
   private JButton kortti1 = new JButton("1");
   private JButton kortti2 = new JButton("2");
@@ -63,7 +63,7 @@ public class GUI extends JFrame {
 
   public static void main(String args[]) {
     GUI ikkuna = new GUI();
-    ikkuna.setTitle("Paneeleja");
+    ikkuna.setTitle("Muistipeli");
     ikkuna.pack();
     ikkuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     ikkuna.setVisible(true);
