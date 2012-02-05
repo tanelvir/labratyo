@@ -103,29 +103,27 @@ public class Pelaaja {
      * @param valinta1
      
      * @param valinta2
+     * 
+     * @param peli
      
      * @return onko parit samat (true) vai erit (false) vai ylipäätänsä pätevät (false) ?
      */
     
-    public boolean arvausKerta(int valinta1, int valinta2, KorttiPakka peli) {
-        if (peli.etsiKortti(valinta1)==false || peli.etsiKortti(valinta2)==false) {
-            System.out.println("Korttiasi ei löydy!");
-        }
-        if (valinta1==valinta2) {
-            System.out.println("Ei samoja kortteja!");
-        }
+    public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli) {
+      while (true) {  
         if (peli.getKortti(valinta1).equals(peli.getKortti(valinta2))) {
             pisteet++;
             vaihdaKerta();
             peli.poista(valinta1, valinta2);
             System.out.println(ilmoitus(true));
-            return true;
+            return peli;
         }
         else {
             vaihdaKerta();
             System.out.println(ilmoitus(false));
-            return false;
+            return peli;
         }
+      }
     }
     
     /**
@@ -160,16 +158,6 @@ public class Pelaaja {
     
     public int getKerta() {
         return kerta;
-    }
-    
-    /**
-     * Tämä tullaan vielä muuttamaan järkevämmäksi!
-     * 
-     * @return Pelaajan vuoro (pariton on, parillinen ei...)
-     */
-    
-    public int getVuoro() {
-        return vuoro;
     }
     
     /**

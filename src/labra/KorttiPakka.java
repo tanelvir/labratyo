@@ -4,7 +4,7 @@
  */
 package labra;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  *
@@ -29,7 +29,8 @@ public class KorttiPakka {
     
     public HashMap sekoitus() {
         for (int i = 1; i <= 16; i++) {
-            kortit.put(i,kuvake = new Kortti(i));
+            kuvake = new Kortti(i);
+            kortit.put(i,kuvake);
         }
         return kortit;
     }

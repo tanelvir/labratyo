@@ -35,22 +35,21 @@ public class Kortti {
     public Kortti(int numero) {
         if (numero==1 || numero==9)
             kuva = "omena";
-        if (numero==2 || numero==10)
+        else if (numero==2 || numero==10)
             kuva = "tuoli";
-        if (numero==3 || numero==11)
+        else if (numero==3 || numero==11)
             kuva = "hevonen";
-        if (numero==4 || numero==12)
+        else if (numero==4 || numero==12)
             kuva = "kivi";
-        if (numero==5 || numero==13)
+        else if (numero==5 || numero==13)
             kuva = "kenkä";
-        if (numero==6 || numero==14)
+        else if (numero==6 || numero==14)
             kuva = "porkkana";
-        if (numero==7 || numero==15)
+        else if (numero==7 || numero==15)
             kuva = "koira";
-        if (numero==8 || numero==16)
+        else if (numero==8 || numero==16)
             kuva = "ovi";
-        else kuva = "virhe";
-            
+        else kuva = "virhe";          
     }
     
     /**
