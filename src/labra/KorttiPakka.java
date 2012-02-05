@@ -12,11 +12,19 @@ import java.util.*;
  */
 public class KorttiPakka {
     
-    public HashMap<Integer,Kortti> kortit;
+    public ArrayList<Kortti> kortit;
     public Kortti kuvake;
     
+    /**
+     * 
+     * Luodaan korttipakka.
+     * 
+     * @return kortit.
+     * 
+     */
+    
     public KorttiPakka() {
-        kortit = new HashMap();
+        kortit = new ArrayList();
     }
     
      /**
@@ -27,10 +35,10 @@ public class KorttiPakka {
      * 
      */
     
-    public HashMap sekoitus() {
+    public ArrayList sekoitus() {
         for (int i = 1; i <= 16; i++) {
             kuvake = new Kortti(i);
-            kortit.put(i,kuvake);
+            kortit.add(kuvake);
         }
         return kortit;
     }
@@ -47,7 +55,7 @@ public class KorttiPakka {
         kortit.remove(numero2);
     }
     
-        /**
+     /**
      * Etsitään löytyykö kortti pakasta. Varmaan korvaa tarkistaNumeron.
      * 
      * @param luku
@@ -57,13 +65,22 @@ public class KorttiPakka {
     
     
     public boolean etsiKortti(int luku) {
-        if (kortit.containsKey(luku)==true)
+        if (kortit.contains(kortit.get(luku-1))) {
             return true;
+        }
         else return false;                 
     }
     
+    /**
+     * Palauttaa valitseman kortin.
+     * 
+     * @param luku
+     * 
+     * @return kortti? 
+     */
+    
     public Kortti getKortti(int luku) {
-        return kortit.get(luku);
+        return kortit.get(luku-1);
     }
     
     

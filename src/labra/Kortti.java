@@ -1,7 +1,8 @@
 package labra;
 
 
-import java.util.HashMap;
+import java.util.*;
+import labra.*;
 
 /*
  * To change this template, choose Tools | Templates
@@ -62,6 +63,5 @@ public class Kortti {
     
     public String toString(){
         return kuva;
-    }
-    
+    }   
 }

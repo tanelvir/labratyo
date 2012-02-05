@@ -1,7 +1,7 @@
 package labra;
 
 
-import labra.Kortti;
+import labra.*;
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -111,7 +111,7 @@ public class Pelaaja {
     
     public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli) {
       while (true) {  
-        if (peli.getKortti(valinta1).equals(peli.getKortti(valinta2))) {
+        if (peli.getKortti(valinta1)==(peli.getKortti(valinta2))) {
             pisteet++;
             vaihdaKerta();
             peli.poista(valinta1, valinta2);
@@ -120,6 +120,7 @@ public class Pelaaja {
         }
         else {
             vaihdaKerta();
+            System.out.println(peli.getKortti(valinta1) + " " + peli.getKortti(valinta2));
             System.out.println(ilmoitus(false));
             return peli;
         }

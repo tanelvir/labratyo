@@ -35,8 +35,8 @@ public class toiminnot extends JFrame implements ActionListener {
         setVisible(true);
   }
 
-  public void actionPerformed(ActionEvent e) {
-    eipasLabel.setText("Nappia painettu!");
-  }
+    public void actionPerformed(ActionEvent e) {
+        eipasLabel.setText("Nappia painettu!");
+    }   
 }
 

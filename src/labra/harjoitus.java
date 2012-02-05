@@ -1,7 +1,7 @@
 package labra;
 
-import labra.Kortti;
-import java.util.Scanner;
+import labra.*;
+import java.util.*;
 
 /*
  * To change this template, choose Tools | Templates
@@ -96,7 +96,6 @@ public class harjoitus  {
     }
     
     public static void yhdenPelaajanpeli(Pelaaja pelaaja, KorttiPakka peli) {
-        peli.sekoitus(); 
         while (peli.korttejaYhteensa()>0) {
             System.out.println(pelaaja.getNimi() + ": " + pelaaja.getPisteet() + "\nAnna luku 1-16 väliltä");
             peliMetodi(pelaaja, peli);
@@ -106,7 +105,6 @@ public class harjoitus  {
     
     public static void kahdenPelaajanpeli(Pelaaja pelaaja1, Pelaaja pelaaja2, KorttiPakka peli) {
         boolean vuoro=true;
-        peli.sekoitus(); 
         while (peli.korttejaYhteensa()>0) {
             System.out.println(pelaaja1.getNimi() + " pisteitä: " + pelaaja1.getPisteet() + "\n"
                     + pelaaja2.getNimi() + " pisteitä: " + pelaaja2.getPisteet());
@@ -146,10 +144,10 @@ public class harjoitus  {
         
         mod = pelaajamaaranValinta(pelaaja1);
         
-        peli = new KorttiPakka();    
+        peli = new KorttiPakka();
+        peli.sekoitus();
       if (mod==false) {
           System.out.println("Pelaajan 2 nimi?");
-          lukija.nextLine();
           nimi = lukija.nextLine();
           pelaaja2 = new Pelaaja(nimi);
           kahdenPelaajanpeli(pelaaja1, pelaaja2, peli);
