@@ -33,9 +33,9 @@ public class Kortti {
      */
     
     
-    public Kortti(int numero) {
+    public Kortti (int numero) {
         if (numero==1 || numero==9)
-            kuva = "omena";
+           kuva = "omena";
         else if (numero==2 || numero==10)
             kuva = "tuoli";
         else if (numero==3 || numero==11)
@@ -54,8 +54,17 @@ public class Kortti {
     }
     
     /**
-     * Tämän voisi periaatteessa korvata laitaKuvalla, 
-     * mutta tämän hetkinen tilanne on hyvä tietää.
+     * 
+     * @return kyseisen kortin kuva 
+     */
+    
+    public String getKuva() {
+        return kuva;
+    }
+    
+    /**
+     * Pelkkä tulostus
+     * 
      * 
      * @param valitsema numero
      * @return numeroa vastaava symboli

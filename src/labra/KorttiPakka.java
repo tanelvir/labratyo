@@ -5,6 +5,7 @@
 package labra;
 
 import java.util.*;
+import labra.*;
 
 /**
  *
@@ -12,7 +13,7 @@ import java.util.*;
  */
 public class KorttiPakka {
     
-    public ArrayList<Kortti> kortit;
+    public HashMap<Integer,Kortti> kortit;
     public Kortti kuvake;
     
     /**
@@ -24,7 +25,7 @@ public class KorttiPakka {
      */
     
     public KorttiPakka() {
-        kortit = new ArrayList();
+        kortit = new HashMap();
     }
     
      /**
@@ -35,10 +36,10 @@ public class KorttiPakka {
      * 
      */
     
-    public ArrayList sekoitus() {
+    public HashMap sekoitus() {
         for (int i = 1; i <= 16; i++) {
             kuvake = new Kortti(i);
-            kortit.add(kuvake);
+            kortit.put(i, kuvake);
         }
         return kortit;
     }
@@ -65,7 +66,7 @@ public class KorttiPakka {
     
     
     public boolean etsiKortti(int luku) {
-        if (kortit.contains(kortit.get(luku-1))) {
+        if (kortit.containsKey(luku)) {
             return true;
         }
         else return false;                 
@@ -80,7 +81,7 @@ public class KorttiPakka {
      */
     
     public Kortti getKortti(int luku) {
-        return kortit.get(luku-1);
+        return kortit.get(luku);
     }
     
     

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  */
 public class LabraTest {
     private Pelaaja pelaaja;
-    private KorttiPakka kortti;
+    private KorttiPakka peli;
     
     /**
      * 
@@ -36,8 +36,8 @@ public class LabraTest {
     @Before
     public void setUp() {
         pelaaja = new Pelaaja("joku");
-        kortti = new KorttiPakka();
-        kortti.sekoitus();
+        peli = new KorttiPakka();
+        peli.sekoitus();
     }
     
     @After
@@ -46,28 +46,28 @@ public class LabraTest {
 
     @Test
     public void oikeinKortit() {
-        pelaaja.arvausKerta(1, 9, kortti);    
+        pelaaja.arvausKerta(1, 9, peli);    
         assertTrue(pelaaja.getPisteet()==1);
     }
     
     @Test
     public void vaarinKortit() { 
-        pelaaja.arvausKerta(1, 7, kortti);    
+        pelaaja.arvausKerta(1, 7, peli);    
         assertFalse(pelaaja.getPisteet()==0);
     }
     
     @Test
     public void korttiLoytyy() {
-        boolean valinta1 = kortti.etsiKortti(17);   
-        boolean valinta2 = kortti.etsiKortti(0);   
+        boolean valinta1 = peli.etsiKortti(17);   
+        boolean valinta2 = peli.etsiKortti(0);   
         assertFalse(valinta1);
         assertFalse(valinta2);
     }
     
     @Test
     public void samatKortit() { 
-        pelaaja.arvausKerta(1, 1, kortti);  
-        assertFalse(kortti.korttejaYhteensa()==14);
+        pelaaja.arvausKerta(1, 1, peli);  
+        assertFalse(peli.korttejaYhteensa()==14);
     }
     
     @Test
@@ -78,27 +78,27 @@ public class LabraTest {
     
     @Test
     public void pariPoistuu() {
-        pelaaja.arvausKerta(1, 9, kortti);
-        assertTrue(kortti.korttejaYhteensa()==14);
+        pelaaja.arvausKerta(1, 9, peli);
+        assertTrue(peli.korttejaYhteensa()==14);
     }
     
     @Test
     public void pelaaja1Saapisteen() {
-        pelaaja.arvausKerta(3, 11, kortti);
+        pelaaja.arvausKerta(3, 11, peli);
         assertTrue(pelaaja.getPisteet()==1);
     }
     
     @Test
     public void samastaParistaeiPisteita() {
-        pelaaja.arvausKerta(3, 11, kortti);
-        pelaaja.arvausKerta(3, 11, kortti);
+        pelaaja.arvausKerta(3, 11, peli);
+        pelaaja.arvausKerta(3, 11, peli);
         assertFalse(pelaaja.getPisteet()==2);
     }
 
     @Test
     public void pariEipoistu() {
-        pelaaja.arvausKerta(1, 2, kortti);
-        assertTrue(kortti.korttejaYhteensa()==16);
+        pelaaja.arvausKerta(1, 2, peli);
+        assertTrue(peli.korttejaYhteensa()==16);
     }
 }
 

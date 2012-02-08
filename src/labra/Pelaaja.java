@@ -106,12 +106,12 @@ public class Pelaaja {
      * 
      * @param peli
      
-     * @return onko parit samat (true) vai erit (false) vai ylipäätänsä pätevät (false) ?
+     * @return KorttiPakka kortteineen.
      */
     
     public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli) {
       while (true) {  
-        if (peli.getKortti(valinta1)==(peli.getKortti(valinta2))) {
+        if (peli.getKortti(valinta1).getKuva().equals(peli.getKortti(valinta2).getKuva())) {
             pisteet++;
             vaihdaKerta();
             peli.poista(valinta1, valinta2);
@@ -120,7 +120,6 @@ public class Pelaaja {
         }
         else {
             vaihdaKerta();
-            System.out.println(peli.getKortti(valinta1) + " " + peli.getKortti(valinta2));
             System.out.println(ilmoitus(false));
             return peli;
         }

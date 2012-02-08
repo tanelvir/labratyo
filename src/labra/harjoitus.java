@@ -15,7 +15,6 @@ import java.util.*;
  *
  * @author taneli
  */
-import java.util.*;
 
 public class harjoitus  {
     
@@ -84,13 +83,12 @@ public class harjoitus  {
                             return peli;
                         }
                         else {
-                            System.out.println(peli.getKortti(pelaaja.getValinta1()) + " " + peli.getKortti(pelaaja.getValinta2()));
                             pelaaja.arvausKerta(pelaaja.getValinta1(), pelaaja.getValinta2(), peli);
                             return peli;
                         }
             }     
             else {
-                System.out.println("ERROR: Virheellinen komento! Syötä luku 1-16 väliltä!");
+                System.out.println("Ei ole enää kyseistä korttia");
             }
       }
     }
@@ -124,6 +122,11 @@ public class harjoitus  {
         
         System.out.println("Peli päättyi " + pelaaja1.getNimi() + "! Sait pisteitä: " + pelaaja1.getPisteet());
         System.out.println(pelaaja2.getNimi() + "! Sait pisteitä: " + pelaaja2.getPisteet());
+        if (pelaaja1.getPisteet()>pelaaja2.getPisteet())
+            System.out.println(pelaaja1.getNimi() + " voitti!");
+        else if (pelaaja1.getPisteet()<pelaaja2.getPisteet())
+            System.out.println(pelaaja2.getNimi() + " voitti!");
+        else System.out.println("Tasapeli!");
     }
     
     
