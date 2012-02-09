@@ -86,7 +86,7 @@ public class Pelaaja {
     public int getValinta1() {
         return Valinta1;
     }
-    
+        
     /**
      * Pelaajan toinen valitsema kortti.
      * 
