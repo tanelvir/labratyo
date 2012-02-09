@@ -20,6 +20,10 @@ public class GUI extends JFrame {
     
   private JTextArea tapahtuma = new JTextArea(7,7);
   private JLabel otsikko = new JLabel("Pelaajanvuoro");
+  
+  /**private JTextField pisteet1;
+  private JTextField pisteet2;
+  private JTextField tekstiText;**/
 
   private JButton kortti1 = new JButton("1");
   private JButton kortti2 = new JButton("2");
@@ -46,7 +50,21 @@ public class GUI extends JFrame {
     painikkeet.add(kortti9); painikkeet.add(kortti10); painikkeet.add(kortti11); painikkeet.add(kortti12);
     painikkeet.add(kortti13); painikkeet.add(kortti14); painikkeet.add(kortti15); painikkeet.add(kortti16);
     
-    kortti1.addActionListener(new toiminnot(1));
+    /** tekstiText = new JTextField("Muistipeli");
+    tekstiText.setEditable(false);
+    painikkeet.add(tekstiText);
+    
+    pisteet1 = new JTextField(pelaaja1.getNimi());
+    pisteet1.setEditable(false);
+    painikkeet.add(pisteet1);
+    add(painikkeet, BorderLayout.WEST); 
+    
+    pisteet2 = new JTextField(pelaaja2.getNimi());
+    pisteet2.setEditable(false);
+    painikkeet.add(pisteet2);
+    add(painikkeet, BorderLayout.EAST);**/
+    
+   /** kortti1.addActionListener(new toiminnot(1));
     kortti2.addActionListener(new toiminnot(2));
     kortti3.addActionListener(new toiminnot(3));
     kortti4.addActionListener(new toiminnot(4));
@@ -61,7 +79,7 @@ public class GUI extends JFrame {
     kortti13.addActionListener(new toiminnot(13));
     kortti14.addActionListener(new toiminnot(14));
     kortti15.addActionListener(new toiminnot(15));
-    kortti16.addActionListener(new toiminnot(16));
+    kortti16.addActionListener(new toiminnot(16)); **/
 
     
     JPanel teksti = new JPanel(new BorderLayout());
