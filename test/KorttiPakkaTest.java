@@ -3,7 +3,9 @@
  * and open the template in the editor.
  */
 
-import labra.*;
+import labra.KorttiPakka;
+import labra.Pelaaja;
+import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -11,9 +13,11 @@ import static org.junit.Assert.*;
  *
  * @author taneli
  */
-public class LabraTest {
+public class KorttiPakkaTest {
     private Pelaaja pelaaja;
     private KorttiPakka peli;
+    private ArrayList<Integer> lista;
+    
     
     /**
      * 
@@ -21,12 +25,12 @@ public class LabraTest {
      * @return
      * 
      */
-    public LabraTest() {
+    public KorttiPakkaTest() {
     }
       
 
     @BeforeClass
-    public static void setUpClass() throws Exception {       
+    public static void setUpClass() throws Exception {  
     }
 
     @AfterClass
@@ -35,9 +39,14 @@ public class LabraTest {
     
     @Before
     public void setUp() {
+        lista = new ArrayList<Integer>();
+        for (int i = 1; i <= 16; i++) {
+            lista.add(i);
+        }
         pelaaja = new Pelaaja("joku");
         peli = new KorttiPakka();
-        peli.sekoitus();
+        peli.setArvotut(lista);
+        peli.sekoitusEiArvottu();
     }
     
     @After
@@ -46,6 +55,7 @@ public class LabraTest {
 
     @Test
     public void oikeinKortit() {
+        System.out.println(peli);
         pelaaja.arvausKerta(1, 9, peli);    
         assertTrue(pelaaja.getPisteet()==1);
     }
@@ -53,15 +63,15 @@ public class LabraTest {
     @Test
     public void vaarinKortit() { 
         pelaaja.arvausKerta(1, 7, peli);    
-        assertFalse(pelaaja.getPisteet()==0);
+        assertTrue(pelaaja.getPisteet()==0);
     }
     
     @Test
     public void korttiLoytyy() {
         boolean valinta1 = peli.etsiKortti(17);   
-        boolean valinta2 = peli.etsiKortti(0);   
+        boolean valinta2 = peli.etsiKortti(4);   
         assertFalse(valinta1);
-        assertFalse(valinta2);
+        assertTrue(valinta2);
     }
     
     @Test
@@ -83,15 +93,15 @@ public class LabraTest {
     }
     
     @Test
-    public void pelaaja1Saapisteen() {
+    public void pelaajaSaapisteen() {
         pelaaja.arvausKerta(3, 11, peli);
         assertTrue(pelaaja.getPisteet()==1);
     }
     
     @Test
-    public void samastaParistaeiPisteita() {
-        pelaaja.arvausKerta(3, 11, peli);
-        pelaaja.arvausKerta(3, 11, peli);
+    public void samastaParistaeiSaaPisteita() {
+        pelaaja.arvausKerta(2, 10, peli);
+        pelaaja.arvausKerta(2, 10, peli);
         assertFalse(pelaaja.getPisteet()==2);
     }
 

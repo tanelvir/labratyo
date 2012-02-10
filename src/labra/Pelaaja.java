@@ -22,7 +22,7 @@ public class Pelaaja {
     String nimi;
     int pisteet;
     int kerta;
-    int vuoro = 1;
+    boolean vuoro = true;
     int Valinta1;
     int Valinta2;
     
@@ -110,7 +110,7 @@ public class Pelaaja {
      */
     
     public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli) {
-      while (true) {  
+      if (peli.etsiKortti(valinta1)==true && peli.etsiKortti(valinta2)==true)  
         if (peli.getKortti(valinta1).getKuva().equals(peli.getKortti(valinta2).getKuva())) {
             pisteet++;
             vaihdaKerta();
@@ -123,7 +123,7 @@ public class Pelaaja {
             System.out.println(ilmoitus(false));
             return peli;
         }
-      }
+      else return peli;
     }
     
     /**
@@ -173,4 +173,19 @@ public class Pelaaja {
         else kerta++;
     }
     
+    public void vaihdaVuoro(boolean totuus) {
+        if (totuus==true)
+            vuoro = true;
+        else 
+            vuoro = false;
+    }
+    
+    public boolean annaVuoro(){
+        return true;
+    }
+    
+    
+    public boolean otaVuoro() {
+        return false;
+    }    
 }

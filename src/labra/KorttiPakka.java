@@ -4,8 +4,9 @@
  */
 package labra;
 
-import java.util.*;
-import labra.*;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -14,6 +15,9 @@ import labra.*;
 public class KorttiPakka {
     
     public HashMap<Integer,Kortti> kortit;
+
+    
+    ArrayList<Integer> arvotut;
     public Kortti kuvake;
     
     /**
@@ -26,6 +30,19 @@ public class KorttiPakka {
     
     public KorttiPakka() {
         kortit = new HashMap();
+        arvotut = new ArrayList();
+    }
+    public void setArvotut(ArrayList<Integer> arvotut) {
+        arvotut = kuvanArpoja();
+        this.arvotut = arvotut;
+    }
+    public ArrayList kuvanArpoja() {
+        ArrayList<Integer> lista = new ArrayList<Integer>();
+        for (int i = 1; i <= 16; i++) {
+            lista.add(i);
+        }
+        Collections.shuffle(lista);
+        return lista;
     }
     
      /**
@@ -36,9 +53,19 @@ public class KorttiPakka {
      * 
      */
     
-    public HashMap sekoitus() {
+    public HashMap sekoitusArvottu() {
+        int luku;
+        arvotut = kuvanArpoja();
+        for (int i = 0; i <= 15; i++) {
+            kuvake = new Kortti(arvotut.get(i));
+            kortit.put(i, kuvake);
+        }
+        return kortit;
+    }
+    
+    public HashMap sekoitusEiArvottu() {
         for (int i = 1; i <= 16; i++) {
-            kuvake = new Kortti(i);
+            kuvake = new Kortti((i));
             kortit.put(i, kuvake);
         }
         return kortit;
@@ -92,6 +119,10 @@ public class KorttiPakka {
      */
     public int korttejaYhteensa() {
        return kortit.size();
+    }
+    
+    public String toString() {
+        return ""+kortit;
     }
     
 }
