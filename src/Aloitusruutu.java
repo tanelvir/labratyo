@@ -7,13 +7,16 @@
  *
  * @author taneli
  */
+import 
 public class Aloitusruutu extends javax.swing.JFrame {
 
     /**
      * Creates new form Aloitusruutu
      */
+    NewJFrame peli;
     public Aloitusruutu() {
         initComponents();
+        
     }
 
     /**
@@ -28,6 +31,9 @@ public class Aloitusruutu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        pelaaja1Label = new javax.swing.JLabel();
+        pelaaja2Label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,8 +45,22 @@ public class Aloitusruutu extends javax.swing.JFrame {
         });
 
         jButton2.setText("2 Pelaajaa");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Valitse pelaajamäärä");
+
+        pelaaja1Label.setEnabled(false);
+        pelaaja1Label.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                pelaaja1LabelComponentHidden(evt);
+            }
+        });
+
+        pelaaja2Label.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,22 +69,35 @@ public class Aloitusruutu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(128, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pelaaja1Label)
+                            .addComponent(pelaaja2Label)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(52, 52, 52)
                 .addComponent(jButton2)
-                .addGap(95, 95, 95))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pelaaja1Label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pelaaja2Label))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -72,7 +105,22 @@ public class Aloitusruutu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+//        jLabel1.setVisible(true);
+        String teksti = jTextField1.getText();
+        pelaaja1Label.setText(teksti);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String teksti = jTextField1.getText();
+        pelaaja2Label.setText(teksti);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void pelaaja1LabelComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_pelaaja1LabelComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pelaaja1LabelComponentHidden
 
     /**
      * @param args the command line arguments
@@ -119,5 +167,8 @@ public class Aloitusruutu extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel pelaaja1Label;
+    private javax.swing.JLabel pelaaja2Label;
     // End of variables declaration//GEN-END:variables
 }

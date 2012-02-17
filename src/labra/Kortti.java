@@ -17,9 +17,13 @@ import labra.*;
  *
  * @author tanelvir
  */
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
 public class Kortti {
     
-    String kuva;
+    ImageIcon kuva;
     
     
     /**
@@ -34,23 +38,42 @@ public class Kortti {
     
     
     public Kortti (int numero) {
-        if (numero==1 || numero==9)
-           kuva = "omena";
-        else if (numero==2 || numero==10)
-            kuva = "tuoli";
-        else if (numero==3 || numero==11)
-            kuva = "hevonen";
-        else if (numero==4 || numero==12)
-            kuva = "kivi";
-        else if (numero==5 || numero==13)
-            kuva = "kenkä";
-        else if (numero==6 || numero==14)
-            kuva = "porkkana";
-        else if (numero==7 || numero==15)
-            kuva = "koira";
-        else if (numero==8 || numero==16)
-            kuva = "ovi";
-        else kuva = "virhe";          
+        if (numero==1 || numero==9) {
+           kuva = new ImageIcon("omena.png");
+           kuva.setDescription("omena");
+        }
+        else if (numero==2 || numero==10) {
+            kuva = new ImageIcon("tuoli.png");
+            kuva.setDescription("tuoli");
+        }
+        else if (numero==3 || numero==11) {
+            kuva = new ImageIcon("hevonen.png");
+            kuva.setDescription("hevonen");
+        }
+        else if (numero==4 || numero==12) {
+            kuva = new ImageIcon("kivi.png");
+            kuva.setDescription("kivi");
+        }
+        else if (numero==5 || numero==13) {
+            kuva = new ImageIcon("kenka.png");
+            kuva.setDescription("kenka");
+        }
+        else if (numero==6 || numero==14) {
+            kuva = new ImageIcon("porkkana.png");
+            kuva.setDescription("porkkana");
+        }
+        else if (numero==7 || numero==15) {
+            kuva = new ImageIcon("koira.png");
+            kuva.setDescription("koira");
+        }
+        else if (numero==8 || numero==16) {
+            kuva = new ImageIcon("ovi.png");
+            kuva.setDescription("ovi");
+        }
+        else { 
+            kuva = new ImageIcon("hellpari.jpg");
+            kuva.setDescription("ERROR");
+        }          
     }
     
     /**
@@ -58,7 +81,7 @@ public class Kortti {
      * @return kyseisen kortin kuva 
      */
     
-    public String getKuva() {
+    public ImageIcon getKuva() {
         return kuva;
     }
     
@@ -71,6 +94,6 @@ public class Kortti {
      */
     
     public String toString(){
-        return kuva;
+        return kuva.getDescription();
     }   
 }

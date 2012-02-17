@@ -7,6 +7,9 @@ package labra;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
@@ -109,6 +112,10 @@ public class KorttiPakka {
     
     public Kortti getKortti(int luku) {
         return kortit.get(luku);
+    }
+    
+    public ImageIcon getKuvake(int luku) {
+        return kortit.get(luku).getKuva();
     }
     
     

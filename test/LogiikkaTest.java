@@ -5,18 +5,20 @@
 
 import labra.KorttiPakka;
 import labra.Pelaaja;
+import labra.logiikka;
 import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
  * @author taneli
  */
-public class KorttiPakkaTest {
-    private Pelaaja pelaaja;
-    private KorttiPakka peli;
-    private ArrayList<Integer> lista;
+public class LogiikkaTest {
+    logiikka peli = new logiikka();
     
     
     /**
@@ -25,7 +27,7 @@ public class KorttiPakkaTest {
      * @return
      * 
      */
-    public KorttiPakkaTest() {
+    public LogiikkaTest() {
     }
       
 
@@ -39,14 +41,7 @@ public class KorttiPakkaTest {
     
     @Before
     public void setUp() {
-        lista = new ArrayList<Integer>();
-        for (int i = 1; i <= 16; i++) {
-            lista.add(i);
-        }
-        pelaaja = new Pelaaja("joku");
-        peli = new KorttiPakka();
-        peli.setArvotut(lista);
-        peli.sekoitusEiArvottu();
+        peli.aloitaPeli();
     }
     
     @After
@@ -56,7 +51,7 @@ public class KorttiPakkaTest {
     @Test
     public void oikeinKortit() {
         System.out.println(peli);
-        pelaaja.arvausKerta(1, 9, peli);    
+        peli.Arvaus(1, 9);    
         assertTrue(pelaaja.getPisteet()==1);
     }
     

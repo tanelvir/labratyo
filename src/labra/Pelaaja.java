@@ -173,11 +173,11 @@ public class Pelaaja {
         else kerta++;
     }
     
-    public void vaihdaVuoro(boolean totuus) {
-        if (totuus==true)
-            vuoro = true;
-        else 
+    public void vaihdaVuoro() {
+        if (getVuoro()==true)
             vuoro = false;
+        else 
+            vuoro = true;
     }
     
     public boolean annaVuoro(){
@@ -187,5 +187,9 @@ public class Pelaaja {
     
     public boolean otaVuoro() {
         return false;
-    }    
+    }
+    
+    public boolean getVuoro() {
+        return vuoro;
+    }
 }
