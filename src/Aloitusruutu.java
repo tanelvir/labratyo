@@ -7,7 +7,6 @@
  *
  * @author taneli
  */
-import 
 public class Aloitusruutu extends javax.swing.JFrame {
 
     /**

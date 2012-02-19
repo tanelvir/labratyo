@@ -18,7 +18,7 @@ public class testiIkoni {
   public static void main(String[] args){
     JFrame frame = new JFrame("Icon on button");
     JButton button = new JButton("Roseindia.net");
-    Icon imgicon = new ImageIcon("hellpari.jpg");
+    Icon imgicon = new ImageIcon("KS.gif");
     JPanel panel = new JPanel();
     button.setIcon(imgicon);
     button.setSize(800, 800);
