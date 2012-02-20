@@ -94,6 +94,6 @@ public class Kortti {
      */
     
     public String toString(){
-        return kuva.getDescription();
+        return ""+kuva.getDescription();
     }   
 }

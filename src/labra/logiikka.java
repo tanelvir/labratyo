@@ -88,10 +88,14 @@ public class logiikka {
         if (getPelaaja1().getVuoro()==true) {
             pelaaja1.arvausKerta(getPelaaja1().getValinta1(), getPelaaja1().getValinta2(), getKP());
             vaihdaVuoro();
+            System.out.println(pelaaja1.getVuoro());
+            System.out.println(getPelaaja1().getValinta1() + " " + getPelaaja1().getValinta2());
         }
         else { 
-            pelaaja2.arvausKerta(getPelaaja2().getValinta1(), getPelaaja2().getValinta2(), getKP());
+            pelaaja2.arvausKerta(getPelaaja2().getValinta1(), getPelaaja2().getValinta2(), getKP());           
             vaihdaVuoro();
+            System.out.println(pelaaja1.getVuoro());
+            System.out.println(getPelaaja2().getValinta1() + " " + getPelaaja2().getValinta2());
         }
     }
     
@@ -131,5 +135,6 @@ public class logiikka {
             getPelaaja2().tokakerta(valinta);
             Arvaus();
         }
+        else System.out.println("ERROR");
     }
 }

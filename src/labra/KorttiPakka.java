@@ -17,9 +17,7 @@ import javax.swing.*;
  */
 public class KorttiPakka {
     
-    public HashMap<Integer,Kortti> kortit;
-
-    
+    public HashMap<Integer,Kortti> kortit;   
     ArrayList<Integer> arvotut;
     public Kortti kuvake;
     

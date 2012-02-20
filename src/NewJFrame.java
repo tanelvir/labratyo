@@ -57,22 +57,16 @@ public class NewJFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     private int tarkistaAvatut() {
-        if (avattujaKortteja<2)
+        if (avattujaKortteja<=2)
             return avattujaKortteja++;
         else if (avattujaKortteja==2)
             return avattujaKortteja;
         else return -1;
     }
     
-    public void delay(){
-        for (int i = 0; i < 999999999; i++)
-            i = i;
-    }
-    
 
     private void nollaaAvatut() throws InterruptedException {
         avattujaKortteja = 0;
-        delay();
         System.out.println("oooooooo");
         for (int i = 0; i <= 15; i++) {
             vaihdaTeksti(i);
@@ -323,10 +317,6 @@ public class NewJFrame extends javax.swing.JFrame {
             jButton1.setText(null);
             peli.pelaajanVastaus(1);
         } if (tarkistaAvatut()==2) {
-            ImageIcon icon = peli.kuvake(0);
-            jButton1.setIcon(icon);
-            jButton1.setText(null);
-            peli.pelaajanVastaus(1);
             try {
                 nollaaAvatut();
             } catch (InterruptedException ex) {

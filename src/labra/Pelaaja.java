@@ -1,7 +1,8 @@
 package labra;
 
 
-import labra.*;
+import labra.KorttiPakka;
+import labra.Kortti;
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -111,7 +112,7 @@ public class Pelaaja {
     
     public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli) {
       if (peli.etsiKortti(valinta1)==true && peli.etsiKortti(valinta2)==true)  
-        if (peli.getKortti(valinta1).getKuva().equals(peli.getKortti(valinta2).getKuva())) {
+        if (peli.getKortti(valinta1).equals(peli.getKortti(valinta2).getKuva())) {
             pisteet++;
             vaihdaKerta();
             peli.poista(valinta1, valinta2);
@@ -181,12 +182,12 @@ public class Pelaaja {
     }
     
     public boolean annaVuoro(){
-        return true;
+        return this.vuoro = true;
     }
     
     
     public boolean otaVuoro() {
-        return false;
+        return this.vuoro = false;
     }
     
     public boolean getVuoro() {
