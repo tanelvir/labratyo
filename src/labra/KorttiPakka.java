@@ -17,9 +17,9 @@ import javax.swing.*;
  */
 public class KorttiPakka {
     
-    public HashMap<Integer,Kortti> kortit;   
+    HashMap<Integer,Kortti> kortit;   
     ArrayList<Integer> arvotut;
-    public Kortti kuvake;
+    Kortti kuvake;
     
     /**
      * 
@@ -59,7 +59,7 @@ public class KorttiPakka {
         arvotut = kuvanArpoja();
         for (int i = 0; i <= 15; i++) {
             kuvake = new Kortti(arvotut.get(i));
-            kortit.put(i, kuvake);
+            kortit.put(i+1, kuvake);
         }
         return kortit;
     }
@@ -113,7 +113,13 @@ public class KorttiPakka {
     }
     
     public ImageIcon getKuvake(int luku) {
-        return kortit.get(luku).getKuva();
+        System.out.println(kortit.get(luku).getKuva());
+        return kortit.get(luku).getKuva();       
+    }
+    
+    public int getInt(int luku) {
+        System.out.println(kortit.get(luku).getIndeksi());
+        return kortit.get(luku).getIndeksi();
     }
     
     

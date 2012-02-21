@@ -111,8 +111,8 @@ public class Pelaaja {
      */
     
     public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli) {
-      if (peli.etsiKortti(valinta1)==true && peli.etsiKortti(valinta2)==true)  
-        if (peli.getKortti(valinta1).equals(peli.getKortti(valinta2).getKuva())) {
+      if (peli.etsiKortti(valinta1)==true && peli.etsiKortti(valinta2)==true) {  
+        if (peli.getKortti(valinta1).getIndeksi()==peli.getKortti(valinta2).getIndeksi()) {
             pisteet++;
             vaihdaKerta();
             peli.poista(valinta1, valinta2);
@@ -121,9 +121,11 @@ public class Pelaaja {
         }
         else {
             vaihdaKerta();
+            System.out.println(peli.getInt(valinta1) + " " + peli.getInt(valinta2));
             System.out.println(ilmoitus(false));
             return peli;
         }
+      }
       else return peli;
     }
     

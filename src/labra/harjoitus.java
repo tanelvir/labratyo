@@ -148,7 +148,7 @@ public class harjoitus  {
         mod = pelaajamaaranValinta(pelaaja1);
         
         peli = new KorttiPakka();
-        peli.sekoitusArvottu();
+        System.out.println(peli.sekoitusArvottu());
       if (mod==false) {
           System.out.println("Pelaajan 2 nimi?");
           nimi = lukija.nextLine();

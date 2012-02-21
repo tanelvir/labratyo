@@ -84,23 +84,27 @@ public class logiikka {
         return pelaaja2.getPisteet();
     } **/
     
-    public void Arvaus() {
+    public void Arvaus(int vastaus1, int vastaus2, KorttiPakka peli) {
         if (getPelaaja1().getVuoro()==true) {
-            pelaaja1.arvausKerta(getPelaaja1().getValinta1(), getPelaaja1().getValinta2(), getKP());
+            pelaaja1.arvausKerta(vastaus1, vastaus2, peli);
             vaihdaVuoro();
-            System.out.println(pelaaja1.getVuoro());
-            System.out.println(getPelaaja1().getValinta1() + " " + getPelaaja1().getValinta2());
+            System.out.println(pelaaja2.getVuoro());
+            System.out.println(vastaus1 + " " + vastaus2);
         }
         else { 
-            pelaaja2.arvausKerta(getPelaaja2().getValinta1(), getPelaaja2().getValinta2(), getKP());           
+            pelaaja2.arvausKerta(vastaus1, vastaus2, peli);           
             vaihdaVuoro();
-            System.out.println(pelaaja1.getVuoro());
-            System.out.println(getPelaaja2().getValinta1() + " " + getPelaaja2().getValinta2());
+            System.out.println(pelaaja2.getVuoro());
+            System.out.println(vastaus1 + " " + vastaus2);
         }
     }
     
     public ImageIcon kuvake(int i) {
         return getKP().getKuvake(i);       
+    }
+    
+    public int indeksi (int i) {
+        return getKP().getInt(i);
     }
     
     public Pelaaja getPelaaja1() {
@@ -120,20 +124,27 @@ public class logiikka {
         getPelaaja2().vaihdaVuoro();
     }
     
+    public String vuoro() {
+        if (pelaaja1.getVuoro()==true)
+            return "Pelaajan " + pelaaja1.getNimi() + " vuoro";
+        else
+            return "Pelaajan " + pelaaja2.getNimi() + " vuoro";
+    }
+    
     public void pelaajanVastaus(int valinta) {
         if (getPelaaja1().getKerta()==1 && getPelaaja1().getVuoro()==true) {
             getPelaaja1().ekaKerta(valinta);
         }
         else if (getPelaaja1().getKerta()==2 && getPelaaja1().getVuoro()==true) {
             getPelaaja1().tokakerta(valinta);
-            Arvaus();
+            Arvaus(getPelaaja1().getValinta1(), getPelaaja1().getValinta2(), getKP());
         }
         else if (getPelaaja2().getKerta()==1 && getPelaaja2().getVuoro()==true) {
             getPelaaja2().ekaKerta(valinta);
         }
         else if (getPelaaja2().getKerta()==2 && getPelaaja2().getVuoro()==true) {
             getPelaaja2().tokakerta(valinta);
-            Arvaus();
+            Arvaus(getPelaaja2().getValinta1(), getPelaaja2().getValinta2(), getKP());
         }
         else System.out.println("ERROR");
     }
