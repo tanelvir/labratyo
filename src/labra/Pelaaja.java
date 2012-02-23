@@ -85,7 +85,7 @@ public class Pelaaja {
      */
     
     public int getValinta1() {
-        return Valinta1;
+        return this.Valinta1;
     }
         
     /**
@@ -95,7 +95,7 @@ public class Pelaaja {
      */
     
     public int getValinta2() {
-        return Valinta2;
+        return this.Valinta2;
     }
     
     /**
@@ -112,7 +112,7 @@ public class Pelaaja {
     
     public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli) {
       if (peli.etsiKortti(valinta1)==true && peli.etsiKortti(valinta2)==true) {  
-        if (peli.getKortti(valinta1).getIndeksi()==peli.getKortti(valinta2).getIndeksi()) {
+        if (peli.getInt(valinta1) ==peli.getInt(valinta2)) {
             pisteet++;
             vaihdaKerta();
             peli.poista(valinta1, valinta2);

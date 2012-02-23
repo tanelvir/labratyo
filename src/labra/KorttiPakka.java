@@ -55,7 +55,6 @@ public class KorttiPakka {
      */
     
     public HashMap sekoitusArvottu() {
-        int luku;
         arvotut = kuvanArpoja();
         for (int i = 0; i <= 15; i++) {
             kuvake = new Kortti(arvotut.get(i));

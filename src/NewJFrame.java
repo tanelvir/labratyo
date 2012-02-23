@@ -79,6 +79,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private void vaihdaTeksti(int i) {          
         nappulat[i].setText("Kortti" + (i+1));
         nappulat[i].setIcon(null);
+        nappulat[i].setEnabled(true);
     }
     
     private boolean tarkistaIkoni(ImageIcon ikoni) {
@@ -86,7 +87,7 @@ public class NewJFrame extends javax.swing.JFrame {
         try {
             nappula.setIcon(ikoni);
             return true;
-        } catch ( Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
@@ -338,6 +339,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 ImageIcon icon = peli.kuvake(1);
                 jButton1.setIcon(icon);
                 jButton1.setText(null);
+                jButton1.setEnabled(false);
                 peli.pelaajanVastaus(peli.indeksi(1));
             }
             else 
@@ -358,6 +360,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 Icon imgicon = peli.kuvake(3);
                 jButton3.setIcon(imgicon);
                 jButton3.setText(null);
+                jButton3.setEnabled(false);
                 peli.pelaajanVastaus(peli.indeksi(3));
             }
             else 
@@ -377,6 +380,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 Icon imgicon = peli.kuvake(2);
                 jButton2.setIcon(imgicon);
                 jButton2.setText(null);
+                jButton2.setEnabled(false);
                 peli.pelaajanVastaus(peli.indeksi(2));
             }
             else 
@@ -396,6 +400,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 Icon imgicon = peli.kuvake(4);
                 jButton4.setIcon(imgicon);
                 jButton4.setText(null);
+                jButton4.setEnabled(false);
                 peli.pelaajanVastaus(peli.indeksi(4));
             }
         }
@@ -416,6 +421,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 Icon imgicon = peli.kuvake(5);
                 jButton5.setIcon(imgicon);
                 jButton5.setText(null);
+                jButton5.setEnabled(false);
                 peli.pelaajanVastaus(peli.indeksi(5));
             }
         }
@@ -437,6 +443,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 Icon imgicon = peli.kuvake(6);
                 jButton6.setIcon(imgicon);
                 jButton6.setText(null);
+                jButton6.setEnabled(false);
                 peli.pelaajanVastaus(peli.indeksi(6));
             }
         }
@@ -457,6 +464,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 Icon imgicon = peli.kuvake(7);
                 jButton7.setIcon(imgicon);
                 jButton7.setText(null);
+                jButton7.setEnabled(false);
                 peli.pelaajanVastaus(peli.indeksi(7));
             }
         }
@@ -474,11 +482,17 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         if (tarkistaAvatut()<=2) {
-            Icon imgicon = peli.kuvake(8);
-            jButton8.setIcon(imgicon);
-            jButton8.setText(null);
-            peli.pelaajanVastaus(peli.indeksi(8));
-        } if (tarkistaAvatut()==2) {
+            if (tarkistaIkoni(peli.kuvake(8))==true) {
+                Icon imgicon = peli.kuvake(8);
+                jButton8.setIcon(imgicon);
+                jButton8.setText(null);
+                jButton8.setEnabled(false);
+                peli.pelaajanVastaus(peli.indeksi(8));
+            }
+        }
+            else 
+                jButton8.setVisible(false);
+        if (tarkistaAvatut()==2) {
             try {
                 nollaaAvatut();
             } catch (InterruptedException ex) {
@@ -488,12 +502,18 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut()<=2) {
-            Icon imgicon = peli.kuvake(9);
-            jButton9.setIcon(imgicon);
-            jButton9.setText(null);
-            peli.pelaajanVastaus(peli.indeksi(9));
-        } if (tarkistaAvatut()==2) {
+        if (tarkistaAvatut()<=2) {    
+            if (tarkistaIkoni(peli.kuvake(9))==true) {
+                Icon imgicon = peli.kuvake(9);
+                jButton9.setIcon(imgicon);
+                jButton9.setText(null);
+                jButton9.setEnabled(false);
+                peli.pelaajanVastaus(peli.indeksi(9));
+            }
+        }
+            else 
+                jButton9.setVisible(false);
+        if (tarkistaAvatut()==2) {
             try {
                 nollaaAvatut();
             } catch (InterruptedException ex) {
@@ -504,11 +524,17 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         if (tarkistaAvatut()<=2) {
-            Icon imgicon = peli.kuvake(10);
-            jButton10.setIcon(imgicon);
-            jButton10.setText(null);
-            peli.pelaajanVastaus(peli.indeksi(10));
-        } if (tarkistaAvatut()==2) {
+            if (tarkistaIkoni(peli.kuvake(10))==true) {
+                Icon imgicon = peli.kuvake(10);
+                jButton10.setIcon(imgicon);
+                jButton10.setText(null);
+                jButton10.setEnabled(false);
+                peli.pelaajanVastaus(peli.indeksi(10));
+            }
+        }
+            else 
+                jButton10.setVisible(false);
+         if (tarkistaAvatut()==2) {
             try {
                 nollaaAvatut();
             } catch (InterruptedException ex) {
@@ -519,11 +545,17 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
         if (tarkistaAvatut()<=2) {
-            Icon imgicon = peli.kuvake(11);
-            jButton11.setIcon(imgicon);
-            jButton11.setText(null);
-            peli.pelaajanVastaus(peli.indeksi(11));
-        } if (tarkistaAvatut()==2) {
+            if (tarkistaIkoni(peli.kuvake(11))==true) {
+                Icon imgicon = peli.kuvake(11);
+                jButton11.setIcon(imgicon);
+                jButton11.setText(null);
+                jButton11.setEnabled(false);
+                peli.pelaajanVastaus(peli.indeksi(11));
+            }
+        }
+            else 
+                jButton11.setVisible(false);
+        if (tarkistaAvatut()==2) {
             try {
                 nollaaAvatut();
             } catch (InterruptedException ex) {
@@ -535,11 +567,17 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
         if (tarkistaAvatut()<=2) {
-            Icon imgicon = peli.kuvake(12);
-            jButton12.setIcon(imgicon);
-            jButton12.setText(null);
-            peli.pelaajanVastaus(peli.indeksi(12));
-        } if (tarkistaAvatut()==2) {
+            if (tarkistaIkoni(peli.kuvake(12))==true) {
+                Icon imgicon = peli.kuvake(12);
+                jButton12.setIcon(imgicon);
+                jButton12.setText(null);
+                jButton12.setEnabled(false);
+                peli.pelaajanVastaus(peli.indeksi(12));
+            }
+        }
+            else 
+                jButton12.setVisible(false);
+        if (tarkistaAvatut()==2) {
             try {
                 nollaaAvatut();
             } catch (InterruptedException ex) {
@@ -550,11 +588,17 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
         if (tarkistaAvatut()<=2) {
-            Icon imgicon = peli.kuvake(13);
-            jButton13.setIcon(imgicon);
-            jButton13.setText(null);
-            peli.pelaajanVastaus(peli.indeksi(13));
-        } if (tarkistaAvatut()==2) {
+            if (tarkistaIkoni(peli.kuvake(13))==true) {
+                Icon imgicon = peli.kuvake(13);
+                jButton13.setIcon(imgicon);
+                jButton13.setText(null);
+                jButton13.setEnabled(false);
+                peli.pelaajanVastaus(peli.indeksi(13));
+            }
+        }
+            else 
+                jButton13.setVisible(false);
+        if (tarkistaAvatut()==2) {
             try {
                 nollaaAvatut();
             } catch (InterruptedException ex) {
@@ -565,11 +609,17 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
         if (tarkistaAvatut()<=2) {
-            Icon imgicon = peli.kuvake(14);
-            jButton14.setIcon(imgicon);
-            jButton14.setText(null);
-            peli.pelaajanVastaus(peli.indeksi(14));
-        } if (tarkistaAvatut()==2) {
+           if (tarkistaIkoni(peli.kuvake(14))==true) {
+                Icon imgicon = peli.kuvake(14);
+                jButton14.setIcon(imgicon);
+                jButton14.setText(null);
+                jButton14.setEnabled(false);
+                peli.pelaajanVastaus(peli.indeksi(14));
+            }
+        }
+            else 
+                jButton14.setVisible(false);
+        if (tarkistaAvatut()==2) {
             try {
                 nollaaAvatut();
             } catch (InterruptedException ex) {
@@ -580,11 +630,17 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
         if (tarkistaAvatut()<=2) {
-            Icon imgicon = peli.kuvake(15);
-            jButton15.setIcon(imgicon);
-            jButton15.setText(null);
-            peli.pelaajanVastaus(peli.indeksi(15));
-        } if (tarkistaAvatut()==2) {
+            if (tarkistaIkoni(peli.kuvake(15))==true) {
+                Icon imgicon = peli.kuvake(15);
+                jButton15.setIcon(imgicon);
+                jButton15.setText(null);
+                jButton15.setEnabled(false);
+                peli.pelaajanVastaus(peli.indeksi(15));
+            }
+        }
+            else 
+                jButton15.setVisible(false);
+        if (tarkistaAvatut()==2) {
             try {
                 nollaaAvatut();
             } catch (InterruptedException ex) {
@@ -596,11 +652,17 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
         if (tarkistaAvatut()<=2) {
-            Icon imgicon = peli.kuvake(16);
-            jButton16.setIcon(imgicon);
-            jButton16.setText(null);
-            peli.pelaajanVastaus(peli.indeksi(16));
-        } if (tarkistaAvatut()==2) {
+            if (tarkistaIkoni(peli.kuvake(16))==true) {
+                Icon imgicon = peli.kuvake(16);
+                jButton16.setIcon(imgicon);
+                jButton16.setText(null);
+                jButton16.setEnabled(false);
+                peli.pelaajanVastaus(peli.indeksi(16));
+            }
+        }
+            else 
+                jButton16.setVisible(false);
+        if (tarkistaAvatut()==2) {
             try {
                 nollaaAvatut();
             } catch (InterruptedException ex) {
