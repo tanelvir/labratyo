@@ -99,6 +99,11 @@ public class Kortti {
         return indeksi;
     }
     
+    
+    public boolean equals(Kortti kortti) {
+        return this.indeksi == kortti.getIndeksi();
+    }
+    
     /**
      * Pelkkä tulostus
      * 

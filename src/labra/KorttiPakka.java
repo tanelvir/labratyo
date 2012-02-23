@@ -5,6 +5,7 @@
 package labra;
 
 import java.util.HashMap;
+import labra.Kortti;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.awt.*;

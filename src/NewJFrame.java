@@ -57,7 +57,7 @@ public class NewJFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     private int tarkistaAvatut(JButton nappula, int numero) {
-        if (tarkistaKortti(peli.getKortti(numero))==true) {
+        if (tarkistaKortti(numero)==true) {
                 ImageIcon icon = peli.kuvake(numero);
                 nappula.setIcon(icon);
                 nappula.setText(null);
@@ -86,14 +86,16 @@ public class NewJFrame extends javax.swing.JFrame {
         }
     }
 
-    private void vaihdaTeksti(int i) {          
+    private void vaihdaTeksti(int i) {
+        if (peli.getKortti(i)==null)
+            nappulat[i].setVisible(false);
         nappulat[i].setText("Kortti" + (i+1));
         nappulat[i].setIcon(null);
         nappulat[i].setEnabled(true);
     }
     
-    private boolean tarkistaKortti(Kortti tama) {
-            if (tama==null) {
+    private boolean tarkistaKortti(int tama) {
+            if (peli.etsiSeKortti(tama)==false) {
                 return false;
             }
             return true;

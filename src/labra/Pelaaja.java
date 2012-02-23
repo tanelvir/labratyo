@@ -112,7 +112,7 @@ public class Pelaaja {
     
     public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli) {
       if (peli.etsiKortti(valinta1)==true && peli.etsiKortti(valinta2)==true) {  
-        if (peli.getInt(valinta1) ==peli.getInt(valinta2)) {
+        if (peli.getKortti(valinta1).equals(peli.getKortti(valinta2))) {
             pisteet++;
             vaihdaKerta();
             peli.poista(valinta1, valinta2);

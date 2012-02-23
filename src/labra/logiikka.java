@@ -17,6 +17,7 @@ public class logiikka {
     Pelaaja pelaaja1;
     Pelaaja pelaaja2;
     KorttiPakka peli;
+    Kortti[] taulukko;
     
     
     public Pelaaja Pelaajan1Nimi(String nimi) {
@@ -40,7 +41,16 @@ public class logiikka {
         Pelaajan2Nimi("Erkki");
         peli = new KorttiPakka();
         peli.sekoitusArvottu();
+        taulukko = luoTaulukko(peli);
         pelaaja2.otaVuoro();
+    }
+    
+    public Kortti[] luoTaulukko(KorttiPakka peli) {
+        Kortti[] taulu = new Kortti[peli.korttejaYhteensa()];
+        for (int i = 0; i < peli.korttejaYhteensa(); i++) {
+            taulu[i] = peli.getKortti(i);
+        }      
+        return taulu;
     }
     
    /** public void valitseEnsimmainenPelaaja1(int valinta) {
@@ -121,6 +131,12 @@ public class logiikka {
     
     public KorttiPakka getKP() {
         return this.peli;
+    }
+    
+    public boolean etsiSeKortti(int i) {
+        if (getKP().etsiKortti(i)==true)
+            return true;
+        else return false;
     }
     
     public void vaihdaVuoro() {
