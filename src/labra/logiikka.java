@@ -103,8 +103,12 @@ public class logiikka {
         return getKP().getKuvake(i);       
     }
     
-    public int indeksi (int i) {
+    public int indeksi(int i) {
         return getKP().getInt(i);
+    }
+    
+    public Kortti getKortti(int i) {
+        return getKP().getKortti(i);
     }
     
     public Pelaaja getPelaaja1() {

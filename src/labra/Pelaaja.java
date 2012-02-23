@@ -184,12 +184,12 @@ public class Pelaaja {
     }
     
     public boolean annaVuoro(){
-        return this.vuoro = true;
+        return vuoro = true;
     }
     
     
     public boolean otaVuoro() {
-        return this.vuoro = false;
+        return vuoro = false;
     }
     
     public boolean getVuoro() {
