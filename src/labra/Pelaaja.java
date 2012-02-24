@@ -122,7 +122,7 @@ public class Pelaaja {
         }
         else {
             vaihdaKerta();
-            System.out.println(peli.getInt(valinta1) + " " + peli.getInt(valinta2));
+            System.out.println("Tulostetaan arvausKerta: " + peli.getInt(valinta1) + " " + peli.getInt(valinta2));
             System.out.println(ilmoitus(false));
             return peli;
         }
@@ -131,9 +131,8 @@ public class Pelaaja {
     }
     
     public boolean etsiKorttiTaulusta(int i, Kortti[] taulukko) {
-        for (int j = 0; j < taulukko.length; j++) {
-            if (taulukko[j]==taulukko[i])
-                return true;
+        if (taulukko[i] != null) {
+            return true;
         }
         return false;
     }
@@ -152,7 +151,7 @@ public class Pelaaja {
         }
         else {
             vaihdaKerta();
-            System.out.println(peli[valinta1] + " " + peli[valinta2]);
+            System.out.println(peli[valinta1].getIndeksi() + " " + peli[valinta2].getIndeksi());
             System.out.println(ilmoitus(false));
             return peli;
         }

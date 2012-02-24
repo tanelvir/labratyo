@@ -124,14 +124,17 @@ public class KorttiPakka {
         return kortit.get(luku);
     }
     
+    public HashMap getKortit() {
+        return kortit;
+    }
+    
     public ImageIcon getKuvake(int luku) {
         System.out.println(kortit.get(luku).getKuva());
         return kortit.get(luku).getKuva();       
     }
     
     public int getInt(int luku) {
-        System.out.println(taulukko[luku].getIndeksi());
-        return taulukko[luku].getIndeksi();
+        return kortit.get(luku).getIndeksi();
     }
     
     

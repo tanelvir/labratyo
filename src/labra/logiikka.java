@@ -11,12 +11,14 @@ package labra;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.HashMap;
 
 public class logiikka {
     
     Pelaaja pelaaja1;
     Pelaaja pelaaja2;
     KorttiPakka peli;
+    KorttiPakka tehosekoitin;
     Kortti[] taulukko;
     
     
@@ -40,8 +42,10 @@ public class logiikka {
         Pelaajan1Nimi("Esimerkki");
         Pelaajan2Nimi("Erkki");
         peli = new KorttiPakka();
-        peli.sekoitusArvottu();
-        taulukko = peli.sekoitusArvottuTaulu();
+        tehosekoitin = new KorttiPakka();
+        tehosekoitin.sekoitusArvottu();
+        peli = tehosekoitin;
+        taulukko = luoTaulukko(peli);
         pelaaja2.otaVuoro();
     }
     
@@ -110,15 +114,15 @@ public class logiikka {
     }
     
     public ImageIcon kuvake(int i) {
-        return taulukko[i].getKuva();       
+        return taulukko[i-1].getKuva();       
     }
     
     public int indeksi(int i) {
-        return taulukko[i].getIndeksi();
+        return taulukko[i - 1].getIndeksi();
     }
     
     public Kortti getKortti(int i) {
-        return taulukko[i];
+        return taulukko[i-1];
     }
     
     public Pelaaja getPelaaja1() {
@@ -152,20 +156,38 @@ public class logiikka {
     }
     
     public void pelaajanVastaus(int valinta) {
+        System.out.println("Pelaaja1 vuorot: " + (getPelaaja1().getKerta() + " " + getPelaaja1().getVuoro()));
+        System.out.println("Pelaaja2 vuorot: " + (getPelaaja2().getKerta() + " " + getPelaaja2().getVuoro()));
         if (getPelaaja1().getKerta()==1 && getPelaaja1().getVuoro()==true) {
             getPelaaja1().ekaKerta(valinta);
         }
         else if (getPelaaja1().getKerta()==2 && getPelaaja1().getVuoro()==true) {
             getPelaaja1().tokakerta(valinta);
             Arvaus(getPelaaja1().getValinta1(), getPelaaja1().getValinta2(), taulukko);
+            poistaTurhat(taulukko);
         }
         else if (getPelaaja2().getKerta()==1 && getPelaaja2().getVuoro()==true) {
+            
             getPelaaja2().ekaKerta(valinta);
         }
         else if (getPelaaja2().getKerta()==2 && getPelaaja2().getVuoro()==true) {
             getPelaaja2().tokakerta(valinta);
             Arvaus(getPelaaja2().getValinta1(), getPelaaja2().getValinta2(), taulukko);
+            poistaTurhat(taulukko);
         }
         else System.out.println("ERROR");
+    }
+    
+    public HashMap poistaTurhat(Kortti[] taulu) {
+        for (int i = 0; i < taulu.length; i++) {
+            if (taulu[i]==null)
+                getHajautus().remove(taulu[i]);
+        }
+            return getHajautus();
+    }
+    
+    public HashMap getHajautus() {
+        System.out.println(peli.getKortit());
+        return peli.getKortit();
     }
 }

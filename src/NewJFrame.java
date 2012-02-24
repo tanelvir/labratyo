@@ -47,7 +47,7 @@ public class NewJFrame extends javax.swing.JFrame {
         nappulat[13] = jButton14;
         nappulat[14] = jButton15;
         nappulat[15] = jButton16;
-//        nappulat = {jButton1,jButton2,jButton3,jButton4,jButton5,jButton6,jButton7,jButton8,jButton9,jButton10,jButton11,jButton12,jButton12,jButton13,jButton14,jButton15,jButton16 };
+//      nappulat = {jButton1,jButton2,jButton3,jButton4,jButton5,jButton6,jButton7,jButton8,jButton9,jButton10,jButton11,jButton12,jButton12,jButton13,jButton14,jButton15,jButton16 };
     }
 
     /**
@@ -57,50 +57,62 @@ public class NewJFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     private int tarkistaAvatut(JButton nappula, int numero) {
-        if (tarkistaKortti(numero)==true) {
-                ImageIcon icon = peli.kuvake(numero);
-                nappula.setIcon(icon);
-                nappula.setText(null);
-                nappula.setEnabled(false);
-                peli.pelaajanVastaus(peli.indeksi(numero));
-            }
-        else {
-            nappula.setVisible(false);
+        if (tarkistaKortti(numero) == true) {
+            ImageIcon icon = peli.kuvake(numero);
+            nappula.setIcon(icon);
+            nappula.setText(null);
+            nappula.setEnabled(false);
+            peli.pelaajanVastaus(peli.indeksi(numero));
+            System.out.println(peli.getKortti(numero));
+            System.out.println(peli.indeksi(numero));
+            System.out.println(peli.kuvake(numero));
+            
         }
-        jLabel2.setText(""+peli.vuoro());
-        jLabel3.setText(""+peli.getPelaaja1().getPisteet());
-        jLabel4.setText(""+peli.getPelaaja2().getPisteet());
-        if (avattujaKortteja<2)
+//        else {
+//            nappula.setVisible(false);
+//        }
+        jLabel2.setText("" + peli.vuoro());
+        jLabel3.setText("" + peli.getPelaaja1().getPisteet());
+        jLabel4.setText("" + peli.getPelaaja2().getPisteet());
+        if (avattujaKortteja < 2) {
             return avattujaKortteja++;
-        if (avattujaKortteja==2)
+        }
+        if (avattujaKortteja == 2) {
+            nollaaAvatut();
             return avattujaKortteja;
-        else return -1;
+        } else {
+            return -1;
+        }
     }
-    
 
-    private void nollaaAvatut() throws InterruptedException {
+    private void nollaaAvatut() {
         avattujaKortteja = 0;
         System.out.println("oooooooo");
         for (int i = 0; i <= 15; i++) {
+            System.out.print(peli.getKortti(i + 1) + " ");
             vaihdaTeksti(i);
+            if (peli.getKortti(i + 1) == null) {
+                nappulat[i].setVisible(false);
+            }
         }
+
     }
 
     private void vaihdaTeksti(int i) {
-        if (peli.getKortti(i+1)==null)
+        if (peli.getKortti(i + 1) == null) {
             nappulat[i].setVisible(false);
-        else {
-            nappulat[i].setText("Kortti" + (i+1));
+        } else {
+            nappulat[i].setText("Kortti" + (i + 1));
             nappulat[i].setIcon(null);
             nappulat[i].setEnabled(true);
         }
     }
-    
+
     private boolean tarkistaKortti(int tama) {
-            if (peli.getKortti(tama)==null) {
-                return false;
-            }
-            return true;
+        if (peli.getKortti(tama) == null) {
+            return false;
+        }
+        return true;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -345,167 +357,103 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton1, 0)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton1, 1) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton3, 2)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton3, 3) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton2, 1)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton2, 2) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton4, 3)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton4, 4) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton5, 4)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton5, 5) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-       if (tarkistaAvatut(jButton6, 5)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton6, 6) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton7, 6)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton7, 7) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton8, 7)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton8, 8) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton8ActionPerformed
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton9, 8)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton9, 9) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton9ActionPerformed
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-       if (tarkistaAvatut(jButton10, 9)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton10, 10) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton10ActionPerformed
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton11, 10)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton11, 11) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton12, 11)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton12, 12) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton12ActionPerformed
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton13, 12)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton13, 13) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton13ActionPerformed
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton14, 13)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton14, 14) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton14ActionPerformed
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-       if (tarkistaAvatut(jButton15, 14)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton15, 15) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(jButton16, 15)==2) {
-            try {
-                nollaaAvatut();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (tarkistaAvatut(jButton16, 16) == 2) {
+            nollaaAvatut();
         }
     }//GEN-LAST:event_jButton16ActionPerformed
 
