@@ -79,6 +79,7 @@ public class harjoitus  {
             else if (peli.etsiKortti(vastaus)==true && pelaaja.getKerta()==2) {
                         System.out.println("Valitsit toisen kortin. Se on " + peli.getKortti(vastaus) + ".");
                         pelaaja.tokakerta(vastaus);
+                        System.out.println(peli);
                         if (tarkastusMetodi(pelaaja, peli)==false) {
                             return peli;
                         }

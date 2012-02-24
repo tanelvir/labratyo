@@ -116,12 +116,43 @@ public class Pelaaja {
             pisteet++;
             vaihdaKerta();
             peli.poista(valinta1, valinta2);
+            //System.out.println(peli.getKortti(valinta1).getIndeksi() + " " + peli.getKortti(valinta2).getIndeksi());
             System.out.println(ilmoitus(true));
             return peli;
         }
         else {
             vaihdaKerta();
             System.out.println(peli.getInt(valinta1) + " " + peli.getInt(valinta2));
+            System.out.println(ilmoitus(false));
+            return peli;
+        }
+      }
+      else return peli;
+    }
+    
+    public boolean etsiKorttiTaulusta(int i, Kortti[] taulukko) {
+        for (int j = 0; j < taulukko.length; j++) {
+            if (taulukko[j]==taulukko[i])
+                return true;
+        }
+        return false;
+    }
+    
+    
+    public Kortti[] arvausTaulu(int valinta1, int valinta2, Kortti[] peli) {
+      if (etsiKorttiTaulusta(valinta1, peli)==true && etsiKorttiTaulusta(valinta2, peli)==true) {  
+        if (peli[valinta1].equals(peli[valinta2])) {
+            pisteet++;
+            vaihdaKerta();
+            peli[valinta1] = null;
+            peli[valinta2] = null;
+            //System.out.println(peli.getKortti(valinta1).getIndeksi() + " " + peli.getKortti(valinta2).getIndeksi());
+            System.out.println(ilmoitus(true));
+            return peli;
+        }
+        else {
+            vaihdaKerta();
+            System.out.println(peli[valinta1] + " " + peli[valinta2]);
             System.out.println(ilmoitus(false));
             return peli;
         }

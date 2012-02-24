@@ -21,6 +21,7 @@ public class KorttiPakka {
     HashMap<Integer,Kortti> kortit;   
     ArrayList<Integer> arvotut;
     Kortti kuvake;
+    Kortti[] taulukko;
     
     /**
      * 
@@ -62,6 +63,17 @@ public class KorttiPakka {
             kortit.put(i+1, kuvake);
         }
         return kortit;
+    }
+    
+    public Kortti[] sekoitusArvottuTaulu() {
+        arvotut = kuvanArpoja();
+        System.out.println(arvotut);
+        Kortti[] taulukko = new Kortti[arvotut.size()];
+        for (int i = 0; i < arvotut.size(); i++) {
+            kuvake = new Kortti(arvotut.get(i));
+            taulukko[i] = kuvake;
+        }
+        return taulukko;
     }
     
     public HashMap sekoitusEiArvottu() {
@@ -118,8 +130,8 @@ public class KorttiPakka {
     }
     
     public int getInt(int luku) {
-        System.out.println(kortit.get(luku).getIndeksi());
-        return kortit.get(luku).getIndeksi();
+        System.out.println(taulukko[luku].getIndeksi());
+        return taulukko[luku].getIndeksi();
     }
     
     
