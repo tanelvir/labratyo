@@ -65,6 +65,15 @@ public class KorttiPakka {
         return kortit;
     }
     
+    public Kortti[] sekoitusEiArvottuTaulu() {
+        Kortti[] taulukko = new Kortti[kortit.size()];
+        for (int i = 1; i <= kortit.size(); i++) {
+            kuvake = new Kortti(i);
+            taulukko[i] = kuvake;
+        }
+        return taulukko;
+    }
+    
     public Kortti[] sekoitusArvottuTaulu() {
         arvotut = kuvanArpoja();
         System.out.println(arvotut);

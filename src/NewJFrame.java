@@ -91,7 +91,7 @@ public class NewJFrame extends javax.swing.JFrame {
         for (int i = 0; i <= 15; i++) {
             System.out.print(peli.getKortti(i + 1) + " ");
             vaihdaTeksti(i);
-            if (peli.getKortti(i + 1) == null) {
+            if (peli.getKortti(i) == null) {
                 nappulat[i].setVisible(false);
             }
         }
@@ -99,7 +99,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     private void vaihdaTeksti(int i) {
-        if (peli.getKortti(i + 1) == null) {
+        if (peli.getKortti(i) == null) {
             nappulat[i].setVisible(false);
         } else {
             nappulat[i].setText("Kortti" + (i + 1));

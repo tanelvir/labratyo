@@ -4,6 +4,7 @@
  */
 
 import labra.KorttiPakka;
+import labra.Kortti;
 import labra.Pelaaja;
 import labra.logiikka;
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import javax.swing.*;
  */
 public class LogiikkaTest {
     logiikka peli = new logiikka();
+    KorttiPakka pakka;
+    Kortti[] taulu;
     
     
     /**
@@ -41,7 +44,9 @@ public class LogiikkaTest {
     
     @Before
     public void setUp() {
-        peli.aloitaPeli();
+        peli.aloitaHarjoituspeli();
+        pakka = new KorttiPakka();
+        taulu = pakka.sekoitusEiArvottuTaulu();
     }
     
     @After
@@ -51,59 +56,73 @@ public class LogiikkaTest {
     @Test
     public void oikeinKortit() {
         System.out.println(peli);
-        peli.Arvaus(1, 9);    
-        assertTrue(pelaaja.getPisteet()==1);
+        peli.Arvaus(1, 1, taulu);    
+        assertTrue(peli.getPelaaja1().getPisteet()==1);
     }
     
     @Test
     public void vaarinKortit() { 
-        pelaaja.arvausKerta(1, 7, peli);    
-        assertTrue(pelaaja.getPisteet()==0);
+        peli.Arvaus(1, 7, taulu);    
+        assertTrue(peli.getPelaaja1().getPisteet()==0);
     }
     
     @Test
     public void korttiLoytyy() {
-        boolean valinta1 = peli.etsiKortti(17);   
-        boolean valinta2 = peli.etsiKortti(4);   
+        boolean valinta1 = peli.getKP().etsiKortti(17);   
+        boolean valinta2 = peli.getKP().etsiKortti(4);   
         assertFalse(valinta1);
         assertTrue(valinta2);
     }
     
     @Test
     public void samatKortit() { 
-        pelaaja.arvausKerta(1, 1, peli);  
-        assertFalse(peli.korttejaYhteensa()==14);
+        peli.Arvaus(1, 1, taulu);  
+        assertFalse(taulu.length==14);
+    }
+    
+    public void toiselleVuoro() {
+        peli.Arvaus(1, 7, taulu);
+        peli.Arvaus(2, 8, taulu);
+        assertTrue(peli.getPelaaja1().getPisteet()==1);
+        assertTrue(peli.getPelaaja2().getPisteet()==1);
     }
     
     @Test
     public void kertaVaihtuu() {
-        pelaaja.ekaKerta(2);
-        assertTrue(pelaaja.getKerta()==2);
+        peli.getPelaaja1().ekaKerta(1);
+        assertTrue(peli.getPelaaja1().getKerta()==2);
     }
     
     @Test
     public void pariPoistuu() {
-        pelaaja.arvausKerta(1, 9, peli);
-        assertTrue(peli.korttejaYhteensa()==14);
+        peli.getPelaaja1().arvausKerta(1, 9, peli.getKP());
+        assertTrue(peli.getKP().korttejaYhteensa()==14);
     }
     
     @Test
     public void pelaajaSaapisteen() {
-        pelaaja.arvausKerta(3, 11, peli);
-        assertTrue(pelaaja.getPisteet()==1);
+        peli.getPelaaja1().arvausKerta(4, 12, peli.getKP());
+        assertTrue(peli.getPelaaja1().getPisteet()==1);
+    }
+    
+    @Test
+    public void arvontaToimii() {
+        peli.Arvaus(1, 9, taulu);
+        peli.getPelaaja1().arvausKerta(2, 10, pakka);
+        assertTrue(peli.getPelaaja1().getPisteet()==1);
     }
     
     @Test
     public void samastaParistaeiSaaPisteita() {
-        pelaaja.arvausKerta(2, 10, peli);
-        pelaaja.arvausKerta(2, 10, peli);
-        assertFalse(pelaaja.getPisteet()==2);
+        peli.getPelaaja1().arvausKerta(2, 10, pakka);
+        peli.getPelaaja1().arvausKerta(2, 10, pakka);
+        assertFalse(peli.getPelaaja1().getPisteet()==2);
     }
 
     @Test
     public void pariEipoistu() {
-        pelaaja.arvausKerta(1, 2, peli);
-        assertTrue(peli.korttejaYhteensa()==16);
+        peli.getPelaaja1().arvausKerta(1, 2, peli.getKP());
+        assertTrue(peli.getKP().korttejaYhteensa()==16);
     }
 }
 

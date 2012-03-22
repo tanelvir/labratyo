@@ -17,7 +17,7 @@ public class logiikka {
     
     Pelaaja pelaaja1;
     Pelaaja pelaaja2;
-    KorttiPakka peli;
+    KorttiPakka peli = new KorttiPakka();
     KorttiPakka tehosekoitin;
     Kortti[] taulukko;
     
@@ -32,8 +32,7 @@ public class logiikka {
         return pelaaja2;
     }
     
-    public void aloitaPeli() {
-        peli = new KorttiPakka();
+    public void aloitaPeli() {        
         peli.sekoitusArvottu();
         pelaaja2.otaVuoro();
     }
@@ -43,7 +42,7 @@ public class logiikka {
         Pelaajan2Nimi("Erkki");
         peli = new KorttiPakka();
         tehosekoitin = new KorttiPakka();
-        tehosekoitin.sekoitusArvottu();
+        tehosekoitin.sekoitusEiArvottu();
         peli = tehosekoitin;
         taulukko = luoTaulukko(peli);
         pelaaja2.otaVuoro();

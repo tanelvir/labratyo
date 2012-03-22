@@ -92,11 +92,11 @@ public class Kortti {
      */
     
     public ImageIcon getKuva() {
-        return kuva;
+        return this.kuva;
     }
     
     public int getIndeksi() {
-        return indeksi;
+        return this.indeksi;
     }
     
     
