@@ -17,10 +17,14 @@ public class logiikka {
     
     Pelaaja pelaaja1;
     Pelaaja pelaaja2;
-    KorttiPakka peli = new KorttiPakka();
+    KorttiPakka peli; // = new KorttiPakka();
     KorttiPakka tehosekoitin;
     Kortti[] taulukko;
     
+    
+    public logiikka() {
+        peli = new KorttiPakka();
+    }
     
     public Pelaaja Pelaajan1Nimi(String nimi) {
         pelaaja1 = new Pelaaja(nimi);
@@ -42,7 +46,7 @@ public class logiikka {
         Pelaajan2Nimi("Erkki");
         peli = new KorttiPakka();
         tehosekoitin = new KorttiPakka();
-        tehosekoitin.sekoitusEiArvottu();
+        tehosekoitin.sekoitusArvottu();
         peli = tehosekoitin;
         taulukko = luoTaulukko(peli);
         pelaaja2.otaVuoro();
@@ -113,15 +117,15 @@ public class logiikka {
     }
     
     public ImageIcon kuvake(int i) {
-        return taulukko[i-1].getKuva();       
+        return taulukko[i].getKuva();       
     }
     
     public int indeksi(int i) {
-        return taulukko[i - 1].getIndeksi();
+        return taulukko[i].getIndeksi();
     }
     
     public Kortti getKortti(int i) {
-        return taulukko[i-1];
+        return taulukko[i];
     }
     
     public Pelaaja getPelaaja1() {
@@ -142,6 +146,15 @@ public class logiikka {
         else return false;
     }
     
+    public void ekaKerta(int valinta, Pelaaja pelaaja) {
+        pelaaja.Valinta1 = valinta;
+        pelaaja.vaihdaKerta();
+    }
+    
+    public void tokakerta(int valinta, Pelaaja pelaaja) {
+        pelaaja.Valinta2 = valinta;
+    }
+    
     public void vaihdaVuoro() {
         getPelaaja1().vaihdaVuoro();
         getPelaaja2().vaihdaVuoro();
@@ -158,21 +171,19 @@ public class logiikka {
         System.out.println("Pelaaja1 vuorot: " + (getPelaaja1().getKerta() + " " + getPelaaja1().getVuoro()));
         System.out.println("Pelaaja2 vuorot: " + (getPelaaja2().getKerta() + " " + getPelaaja2().getVuoro()));
         if (getPelaaja1().getKerta()==1 && getPelaaja1().getVuoro()==true) {
-            getPelaaja1().ekaKerta(valinta);
+            ekaKerta(valinta, getPelaaja1());
         }
         else if (getPelaaja1().getKerta()==2 && getPelaaja1().getVuoro()==true) {
-            getPelaaja1().tokakerta(valinta);
-            Arvaus(getPelaaja1().getValinta1(), getPelaaja1().getValinta2(), taulukko);
-            poistaTurhat(taulukko);
+            tokakerta(valinta, getPelaaja1());
+            arvausKerta(getPelaaja1().getValinta1(), getPelaaja1().getValinta2(), peli, getPelaaja1());
         }
         else if (getPelaaja2().getKerta()==1 && getPelaaja2().getVuoro()==true) {
             
-            getPelaaja2().ekaKerta(valinta);
+            ekaKerta(valinta, getPelaaja2());
         }
         else if (getPelaaja2().getKerta()==2 && getPelaaja2().getVuoro()==true) {
-            getPelaaja2().tokakerta(valinta);
-            Arvaus(getPelaaja2().getValinta1(), getPelaaja2().getValinta2(), taulukko);
-            poistaTurhat(taulukko);
+            tokakerta(valinta, getPelaaja2());
+            arvausKerta(getPelaaja2().getValinta1(), getPelaaja1().getValinta2(), peli, getPelaaja2());
         }
         else System.out.println("ERROR");
     }
@@ -188,5 +199,25 @@ public class logiikka {
     public HashMap getHajautus() {
         System.out.println(peli.getKortit());
         return peli.getKortit();
+    }
+    
+    public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli, Pelaaja pelaaja) {
+      if (peli.etsiKortti(valinta1)==true && peli.etsiKortti(valinta2)==true) {  
+        if (peli.getKortti(valinta1).equals(peli.getKortti(valinta2))) {
+            pelaaja.pisteet++;
+            pelaaja.vaihdaKerta();
+            peli.poista(valinta1, valinta2);
+            //System.out.println(peli.getKortti(valinta1).getIndeksi() + " " + peli.getKortti(valinta2).getIndeksi());
+            System.out.println(pelaaja.ilmoitus(true));
+            return peli;
+        }
+        else {
+            pelaaja.vaihdaKerta();
+            System.out.println("Tulostetaan arvausKerta: " + peli.getInt(valinta1) + " " + peli.getInt(valinta2));
+            System.out.println(pelaaja.ilmoitus(false));
+            return peli;
+        }
+      }
+      else return peli;
     }
 }

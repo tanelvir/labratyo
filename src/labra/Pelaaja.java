@@ -61,7 +61,7 @@ public class Pelaaja {
      */
     
     
-    public void ekaKerta(int valinta) {
+    public void ekaKertaToinen(int valinta) {
         Valinta1 = valinta;
         vaihdaKerta();
     }
@@ -74,7 +74,7 @@ public class Pelaaja {
      */
     
     
-    public void tokakerta(int valinta) {
+    public void tokakertaToinen(int valinta) {
         Valinta2 = valinta;
     }
     
@@ -110,7 +110,7 @@ public class Pelaaja {
      * @return KorttiPakka kortteineen.
      */
     
-    public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli) {
+    public KorttiPakka arvausKertaToinen(int valinta1, int valinta2, KorttiPakka peli) {
       if (peli.etsiKortti(valinta1)==true && peli.etsiKortti(valinta2)==true) {  
         if (peli.getKortti(valinta1).equals(peli.getKortti(valinta2))) {
             pisteet++;

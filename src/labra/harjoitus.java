@@ -1,6 +1,7 @@
 package labra;
 
-import labra.*;
+import labra.KorttiPakka;
+import labra.Pelaaja;
 import java.util.*;
 
 /*
@@ -73,18 +74,18 @@ public class harjoitus  {
             }
             else if (peli.etsiKortti(vastaus)==true && pelaaja.getKerta()==1) {
                         System.out.println("Valitsit ensimmäisen kortin. Se on " + peli.getKortti(vastaus) + ".");
-                        pelaaja.ekaKerta(vastaus);
+                        pelaaja.ekaKertaToinen(vastaus);
                         return peli;
             }
             else if (peli.etsiKortti(vastaus)==true && pelaaja.getKerta()==2) {
                         System.out.println("Valitsit toisen kortin. Se on " + peli.getKortti(vastaus) + ".");
-                        pelaaja.tokakerta(vastaus);
+                        pelaaja.tokakertaToinen(vastaus);
                         System.out.println(peli);
                         if (tarkastusMetodi(pelaaja, peli)==false) {
                             return peli;
                         }
                         else {
-                            pelaaja.arvausKerta(pelaaja.getValinta1(), pelaaja.getValinta2(), peli);
+                            pelaaja.arvausKertaToinen(pelaaja.getValinta1(), pelaaja.getValinta2(), peli);
                             return peli;
                         }
             }     
