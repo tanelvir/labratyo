@@ -2,17 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-import labra.KorttiPakka;
+import labra.KorttiPakka; 
 import labra.Kortti;
-import labra.Pelaaja;
 import labra.logiikka;
-import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 
 /**
  *
@@ -22,7 +16,6 @@ public class LogiikkaTest {
     logiikka peli = new logiikka();
     KorttiPakka pakka;
     Kortti[] taulu;
-    
     
     /**
      * 
@@ -80,48 +73,51 @@ public class LogiikkaTest {
         assertFalse(taulu.length==14);
     }
     
+    @Test
     public void toiselleVuoro() {
-        peli.Arvaus(1, 7, taulu);
-        peli.Arvaus(2, 8, taulu);
+        peli.pelaajanVastaus(1);
+        peli.pelaajanVastaus(9);
+        peli.pelaajanVastaus(2);
+        peli.pelaajanVastaus(10);
         assertTrue(peli.getPelaaja1().getPisteet()==1);
         assertTrue(peli.getPelaaja2().getPisteet()==1);
     }
     
     @Test
     public void kertaVaihtuu() {
-        peli.getPelaaja1().ekaKerta(1);
+        peli.getPelaaja1().ekaKertaToinen(1);
         assertTrue(peli.getPelaaja1().getKerta()==2);
     }
     
     @Test
     public void pariPoistuu() {
-        peli.getPelaaja1().arvausKerta(1, 9, peli.getKP());
+        peli.getPelaaja1().arvausKertaToinen(1, 9, peli.getKP());
         assertTrue(peli.getKP().korttejaYhteensa()==14);
     }
     
     @Test
     public void pelaajaSaapisteen() {
-        peli.getPelaaja1().arvausKerta(4, 12, peli.getKP());
+        peli.getPelaaja1().arvausKertaToinen(4, 12, peli.getKP());
         assertTrue(peli.getPelaaja1().getPisteet()==1);
     }
     
     @Test
     public void arvontaToimii() {
         peli.Arvaus(1, 9, taulu);
-        peli.getPelaaja1().arvausKerta(2, 10, pakka);
+        peli.getPelaaja1().arvausKertaToinen(2, 10, pakka);
         assertTrue(peli.getPelaaja1().getPisteet()==1);
-    }
+    }   
     
     @Test
     public void samastaParistaeiSaaPisteita() {
-        peli.getPelaaja1().arvausKerta(2, 10, pakka);
-        peli.getPelaaja1().arvausKerta(2, 10, pakka);
+        peli.getPelaaja1().arvausKertaToinen(2, 10, pakka);
+        peli.getPelaaja1().arvausKertaToinen(2, 10, pakka);   
         assertFalse(peli.getPelaaja1().getPisteet()==2);
     }
 
     @Test
     public void pariEipoistu() {
-        peli.getPelaaja1().arvausKerta(1, 2, peli.getKP());
+        peli.getPelaaja1().arvausKertaToinen(1, 2, peli.getKP());
         assertTrue(peli.getKP().korttejaYhteensa()==16);
     }
 }

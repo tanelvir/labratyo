@@ -24,6 +24,7 @@ public class logiikka {
     
     public logiikka() {
         peli = new KorttiPakka();
+        aloitaHarjoituspeli();
     }
     
     public Pelaaja Pelaajan1Nimi(String nimi) {
@@ -46,7 +47,7 @@ public class logiikka {
         Pelaajan2Nimi("Erkki");
         peli = new KorttiPakka();
         tehosekoitin = new KorttiPakka();
-        tehosekoitin.sekoitusArvottu();
+        tehosekoitin.sekoitusEiArvottu();
         peli = tehosekoitin;
         taulukko = luoTaulukko(peli);
         pelaaja2.otaVuoro();
@@ -106,13 +107,13 @@ public class logiikka {
             pelaaja1.arvausTaulu(vastaus1, vastaus2, taulukko);
             vaihdaVuoro();
             System.out.println(pelaaja2.getVuoro());
-            System.out.println(vastaus1 + " " + vastaus2);
+            System.out.println(vastaus1 + " :: " + vastaus2);
         }
         else { 
             pelaaja2.arvausTaulu(vastaus1, vastaus2, peli);           
             vaihdaVuoro();
             System.out.println(pelaaja2.getVuoro());
-            System.out.println(vastaus1 + " " + vastaus2);
+            System.out.println(vastaus1 + " :: " + vastaus2);
         }
     }
     
@@ -176,14 +177,15 @@ public class logiikka {
         else if (getPelaaja1().getKerta()==2 && getPelaaja1().getVuoro()==true) {
             tokakerta(valinta, getPelaaja1());
             arvausKerta(getPelaaja1().getValinta1(), getPelaaja1().getValinta2(), peli, getPelaaja1());
+            vaihdaVuoro();
         }
-        else if (getPelaaja2().getKerta()==1 && getPelaaja2().getVuoro()==true) {
-            
+        else if (getPelaaja2().getKerta()==1 && getPelaaja2().getVuoro()==true) {            
             ekaKerta(valinta, getPelaaja2());
         }
         else if (getPelaaja2().getKerta()==2 && getPelaaja2().getVuoro()==true) {
             tokakerta(valinta, getPelaaja2());
-            arvausKerta(getPelaaja2().getValinta1(), getPelaaja1().getValinta2(), peli, getPelaaja2());
+            arvausKerta(getPelaaja2().getValinta1(), getPelaaja2().getValinta2(), peli, getPelaaja2());
+            vaihdaVuoro();
         }
         else System.out.println("ERROR");
     }
@@ -203,12 +205,14 @@ public class logiikka {
     
     public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli, Pelaaja pelaaja) {
       if (peli.etsiKortti(valinta1)==true && peli.etsiKortti(valinta2)==true) {  
-        if (peli.getKortti(valinta1).equals(peli.getKortti(valinta2))) {
+        if (peli.getKortti(valinta1).getIndeksi()==peli.getKortti(valinta2).getIndeksi()) {
             pelaaja.pisteet++;
             pelaaja.vaihdaKerta();
+            System.out.println("1"+peli);
             peli.poista(valinta1, valinta2);
-            //System.out.println(peli.getKortti(valinta1).getIndeksi() + " " + peli.getKortti(valinta2).getIndeksi());
+//            System.out.println(peli.getKortti(valinta1).getIndeksi() + " aK " + peli.getKortti(valinta2).getIndeksi());
             System.out.println(pelaaja.ilmoitus(true));
+            System.out.println("2"+peli);
             return peli;
         }
         else {

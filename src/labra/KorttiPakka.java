@@ -121,6 +121,13 @@ public class KorttiPakka {
         else return false;                 
     }
     
+    public boolean etsiItseKortti(Kortti kortti) {
+        if (kortit.containsValue(kortti)) {
+            return true;
+        }
+        else return false;                 
+    }
+    
     /**
      * Palauttaa valitseman kortin.
      * 

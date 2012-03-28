@@ -18,17 +18,39 @@ import labra.Pelaaja;
 public class KorttiNappula extends JButton {
     
     Kortti kortti;
+    int index;
     
-    public KorttiNappula(int numero) {
+    public KorttiNappula(int numero, int indeksi) {
         kortti = new Kortti(numero);
+        index = indeksi;
     }
     
     public ImageIcon getKuvake(){
-        return kortti.getKuva();
+        return this.kortti.getKuva();
+    }
+    
+    public void setKuvake() {
+        ImageIcon ikoni;
+        ikoni = getKuvake();
+        this.setIcon(ikoni);
+        this.setText(null);
+        this.setEnabled(false);
     }
     
     public int getIndeksi(){
-        return kortti.getIndeksi();
+        return this.kortti.getIndeksi();
+    }
+    
+    public void sumenna(){
+        this.setVisible(false);
+    }
+    
+    public int index(){
+        return this.index;
+    }
+    
+    public Kortti getKortti() {
+        return kortti;
     }
             
 }

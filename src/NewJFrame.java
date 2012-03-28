@@ -20,33 +20,33 @@ import labra.Pelaaja;
 public class NewJFrame extends javax.swing.JFrame {
 
     int avattujaKortteja;
-    logiikka peli = new logiikka();
-    KorttiNappula[] nappulat = new KorttiNappula[16];
+    logiikka peli;
+    KorttiNappula[] nappulat;
 
     /**
      * Creates new form NewJFrame
      */
     public NewJFrame() {
+        peli = new logiikka();
+        nappulat = new KorttiNappula[16];
         avattujaKortteja = 0;
         initComponents();
-        peli.aloitaHarjoituspeli();
-        avattujaKortteja = 0;
-        nappulat[0] = new KorttiNappula(peli.getKortti(1).getIndeksi());
-        nappulat[1] = new KorttiNappula(peli.getKortti(2).getIndeksi());
-        nappulat[2] = new KorttiNappula(peli.getKortti(3).getIndeksi());
-        nappulat[3] = new KorttiNappula(peli.getKortti(4).getIndeksi());
-        nappulat[4] = new KorttiNappula(peli.getKortti(5).getIndeksi());
-        nappulat[5] = new KorttiNappula(peli.getKortti(6).getIndeksi());
-        nappulat[6] = new KorttiNappula(peli.getKortti(7).getIndeksi());
-        nappulat[7] = new KorttiNappula(peli.getKortti(8).getIndeksi());
-        nappulat[8] = new KorttiNappula(peli.getKortti(9).getIndeksi());
-        nappulat[9] = new KorttiNappula(peli.getKortti(10).getIndeksi());
-        nappulat[10] = new KorttiNappula(peli.getKortti(11).getIndeksi());
-        nappulat[11] = new KorttiNappula(peli.getKortti(12).getIndeksi());
-        nappulat[12] = new KorttiNappula(peli.getKortti(13).getIndeksi());
-        nappulat[13] = new KorttiNappula(peli.getKortti(14).getIndeksi());
-        nappulat[14] = new KorttiNappula(peli.getKortti(15).getIndeksi());
-        nappulat[15] = new KorttiNappula(peli.getKortti(16).getIndeksi());
+        nappulat[0] = new KorttiNappula(peli.getKP().getKortti(1).getIndeksi(), 0);
+        nappulat[1] = new KorttiNappula(peli.getKP().getKortti(2).getIndeksi(), 1);
+        nappulat[2] = new KorttiNappula(peli.getKP().getKortti(3).getIndeksi(), 2);
+        nappulat[3] = new KorttiNappula(peli.getKP().getKortti(4).getIndeksi(), 3);
+        nappulat[4] = new KorttiNappula(peli.getKP().getKortti(5).getIndeksi(), 4);
+        nappulat[5] = new KorttiNappula(peli.getKP().getKortti(6).getIndeksi(), 5);
+        nappulat[6] = new KorttiNappula(peli.getKP().getKortti(7).getIndeksi(), 6);
+        nappulat[7] = new KorttiNappula(peli.getKP().getKortti(8).getIndeksi(), 7);
+        nappulat[8] = new KorttiNappula(peli.getKP().getKortti(9).getIndeksi(), 8);
+        nappulat[9] = new KorttiNappula(peli.getKP().getKortti(10).getIndeksi(), 9);
+        nappulat[10] = new KorttiNappula(peli.getKP().getKortti(11).getIndeksi(), 10);
+        nappulat[11] = new KorttiNappula(peli.getKP().getKortti(12).getIndeksi(), 11);
+        nappulat[12] = new KorttiNappula(peli.getKP().getKortti(13).getIndeksi(), 12);
+        nappulat[13] = new KorttiNappula(peli.getKP().getKortti(14).getIndeksi(), 13);
+        nappulat[14] = new KorttiNappula(peli.getKP().getKortti(15).getIndeksi(), 14);
+        nappulat[15] = new KorttiNappula(peli.getKP().getKortti(16).getIndeksi(), 15);
 //      nappulat = {jButton1,jButton2,jButton3,jButton4,jButton5,jButton6,jButton7,jButton8,jButton9,jButton10,jButton11,jButton12,jButton12,jButton13,jButton14,jButton15,jButton16 };
     }
 
@@ -58,19 +58,19 @@ public class NewJFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private int tarkistaAvatut(KorttiNappula nappula) {
         if (tarkistaKortti(nappula) == true) {
-            ImageIcon icon = peli.kuvake(numero);
-            nappula.setIcon(icon);
-            nappula.setText(null);
-            nappula.setEnabled(false);
-            peli.pelaajanVastaus(peli.indeksi(numero));
-            System.out.println(peli.getKortti(numero));
-            System.out.println(peli.indeksi(numero));
-            System.out.println(peli.kuvake(numero));
+              nappula.setKuvake();
+//            nappula.setIcon(icon);
+//            nappula.setText(null);
+//            nappula.setEnabled(false);
+            peli.pelaajanVastaus(nappula.index()+1);
+            System.out.println("-"+nappula.getKortti());
+            System.out.println("-"+peli.indeksi(nappula.getIndeksi()));
+            System.out.println("-"+nappula.getKuvake());
             
         }
-//        else {
-//            nappula.setVisible(false);
-//        }
+        else {
+            nappula.sumenna();
+        }
         jLabel2.setText("" + peli.vuoro());
         jLabel3.setText("" + peli.getPelaaja1().getPisteet());
         jLabel4.setText("" + peli.getPelaaja2().getPisteet());
@@ -88,10 +88,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private void nollaaAvatut() {
         avattujaKortteja = 0;
         System.out.println("oooooooo");
-        for (int i = 1; i <= 16; i++) {
-            System.out.print(peli.getKortti(i) + " ");
+        for (int i = 0; i < nappulat.length; i++) {
+            System.out.print(","+peli.getKP().getKortti(i+1));
             vaihdaTeksti(i);
-            if (peli.getKortti(i) == null) {
+            if (peli.getKP().getKortti(i+1) == null) {
                 nappulat[i].setVisible(false);
             }
         }
@@ -99,7 +99,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     private void vaihdaTeksti(int i) {
-        if (peli.getKortti(i) == null) {
+        if (peli.getKP().getKortti(i+1) == null) {
             nappulat[i].setVisible(false);
         } else {
             nappulat[i].setText("Kortti" + (i + 1));
@@ -108,10 +108,11 @@ public class NewJFrame extends javax.swing.JFrame {
         }
     }
 
-    private boolean tarkistaKortti(int tama) {
-        if (peli.getKortti(tama) == null) {
+    private boolean tarkistaKortti(KorttiNappula nappula) {
+        if (peli.getKP().getKortti(nappula.index()+1) == null) {
             return false;
         }
+        System.out.println(peli.getKP().getKortti(nappula.index()+1));
         return true;
     }
 
