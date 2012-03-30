@@ -16,41 +16,57 @@ import labra.Kortti;
 import labra.Pelaaja;
 
 public class KorttiNappula extends JButton {
-    
+
     Kortti kortti;
     int index;
-    
-    public KorttiNappula(int numero, int indeksi) {
+    JButton painike;
+
+    public KorttiNappula(int numero, int indeksi, JButton nappula) {
         kortti = new Kortti(numero);
         index = indeksi;
+        painike = nappula;
     }
-    
-    public ImageIcon getKuvake(){
+
+    public ImageIcon getKuvake() {
         return this.kortti.getKuva();
     }
-    
-    public void setKuvake() {
+
+    public JButton setKuvake() {
         ImageIcon ikoni;
         ikoni = getKuvake();
-        this.setIcon(ikoni);
-        this.setText(null);
-        this.setEnabled(false);
+        System.out.println("Nappulassa: " + ikoni);
+        painike.setIcon(ikoni);
+        painike.setText(null);
+        painike.setEnabled(false);
+        return painike;
     }
-    
-    public int getIndeksi(){
+
+    public JButton kaannaKortti(String teksti) {
+        painike.setText(teksti);
+        painike.setIcon(null);
+        painike.setEnabled(true);
+        return painike;
+    }
+
+    public int getIndeksi() {
         return this.kortti.getIndeksi();
     }
-    
-    public void sumenna(){
-        this.setVisible(false);
+
+    public JButton sumenna() {
+        painike.setEnabled(false);
+        return painike;
     }
     
-    public int index(){
+    public JButton lukitse() {
+        painike.setEnabled(false);
+        return painike;
+    }
+
+    public int index() {
         return this.index;
     }
-    
+
     public Kortti getKortti() {
         return kortti;
     }
-            
 }

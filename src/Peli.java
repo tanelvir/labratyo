@@ -17,7 +17,7 @@ import labra.KorttiPakka;
 import labra.Kortti;
 import labra.Pelaaja;
 
-public class NewJFrame extends javax.swing.JFrame {
+public class Peli extends javax.swing.JFrame {
 
     int avattujaKortteja;
     logiikka peli;
@@ -26,27 +26,11 @@ public class NewJFrame extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public NewJFrame() {
+    public Peli() {
         peli = new logiikka();
-        nappulat = new KorttiNappula[16];
         avattujaKortteja = 0;
         initComponents();
-        nappulat[0] = new KorttiNappula(peli.getKP().getKortti(1).getIndeksi(), 0);
-        nappulat[1] = new KorttiNappula(peli.getKP().getKortti(2).getIndeksi(), 1);
-        nappulat[2] = new KorttiNappula(peli.getKP().getKortti(3).getIndeksi(), 2);
-        nappulat[3] = new KorttiNappula(peli.getKP().getKortti(4).getIndeksi(), 3);
-        nappulat[4] = new KorttiNappula(peli.getKP().getKortti(5).getIndeksi(), 4);
-        nappulat[5] = new KorttiNappula(peli.getKP().getKortti(6).getIndeksi(), 5);
-        nappulat[6] = new KorttiNappula(peli.getKP().getKortti(7).getIndeksi(), 6);
-        nappulat[7] = new KorttiNappula(peli.getKP().getKortti(8).getIndeksi(), 7);
-        nappulat[8] = new KorttiNappula(peli.getKP().getKortti(9).getIndeksi(), 8);
-        nappulat[9] = new KorttiNappula(peli.getKP().getKortti(10).getIndeksi(), 9);
-        nappulat[10] = new KorttiNappula(peli.getKP().getKortti(11).getIndeksi(), 10);
-        nappulat[11] = new KorttiNappula(peli.getKP().getKortti(12).getIndeksi(), 11);
-        nappulat[12] = new KorttiNappula(peli.getKP().getKortti(13).getIndeksi(), 12);
-        nappulat[13] = new KorttiNappula(peli.getKP().getKortti(14).getIndeksi(), 13);
-        nappulat[14] = new KorttiNappula(peli.getKP().getKortti(15).getIndeksi(), 14);
-        nappulat[15] = new KorttiNappula(peli.getKP().getKortti(16).getIndeksi(), 15);
+        nappulat = luonti(peli);
 //      nappulat = {jButton1,jButton2,jButton3,jButton4,jButton5,jButton6,jButton7,jButton8,jButton9,jButton10,jButton11,jButton12,jButton12,jButton13,jButton14,jButton15,jButton16 };
     }
 
@@ -58,17 +42,16 @@ public class NewJFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private int tarkistaAvatut(KorttiNappula nappula) {
         if (tarkistaKortti(nappula) == true) {
-              nappula.setKuvake();
-//            nappula.setIcon(icon);
-//            nappula.setText(null);
-//            nappula.setEnabled(false);
-            peli.pelaajanVastaus(nappula.index()+1);
-            System.out.println("-"+nappula.getKortti());
-            System.out.println("-"+peli.indeksi(nappula.getIndeksi()));
-            System.out.println("-"+nappula.getKuvake());
-            
-        }
-        else {
+            nappula.setKuvake();
+//            nabula.setIcon(nappula.getKuvake());
+//            nabula.setText(null);
+//            nabula.setEnabled(false);
+            peli.pelaajanVastaus(nappula.index() + 1);
+            System.out.println("-" + nappula.getKortti());
+            System.out.println("-" + peli.indeksi(nappula.getIndeksi()));
+            System.out.println("-" + nappula.getKuvake());
+
+        } else {
             nappula.sumenna();
         }
         jLabel2.setText("" + peli.vuoro());
@@ -85,36 +68,50 @@ public class NewJFrame extends javax.swing.JFrame {
         }
     }
 
+    private KorttiNappula[] luonti(logiikka game) {
+        KorttiNappula[] taulu = new KorttiNappula[16];
+        JButton[] taulukko = {jButton1,jButton2,jButton3,jButton4,jButton5,jButton6,jButton7,jButton8,jButton9,jButton10,jButton11,jButton12,jButton13,jButton14,jButton15,jButton16 };
+        for (int i = 0; i < taulu.length; i++) {
+            taulu[i] = new KorttiNappula(game.getKP().getKortti(i + 1).getIndeksi(), i, taulukko[i]);
+        }
+        return taulu;
+    }
+
     private void nollaaAvatut() {
         avattujaKortteja = 0;
         System.out.println("oooooooo");
         for (int i = 0; i < nappulat.length; i++) {
-            System.out.print(","+peli.getKP().getKortti(i+1));
+            System.out.print("," + peli.getKP().getKortti(i + 1));
             vaihdaTeksti(i);
-            if (peli.getKP().getKortti(i+1) == null) {
-                nappulat[i].setVisible(false);
+            if (peli.getKP().getKortti(i + 1) == null) {
+                nappulat[i].sumenna();
             }
         }
 
     }
 
     private void vaihdaTeksti(int i) {
-        if (peli.getKP().getKortti(i+1) == null) {
-            nappulat[i].setVisible(false);
+        if (peli.getKP().getKortti(i + 1) == null) {
+            nappulat[i].sumenna();
         } else {
-            nappulat[i].setText("Kortti" + (i + 1));
-            nappulat[i].setIcon(null);
-            nappulat[i].setEnabled(true);
+            nappulat[i].kaannaKortti("Kortti" + (i + 1));
         }
     }
 
     private boolean tarkistaKortti(KorttiNappula nappula) {
-        if (peli.getKP().getKortti(nappula.index()+1) == null) {
+        if (peli.getKP().getKortti(nappula.index() + 1) == null) {
             return false;
         }
-        System.out.println(peli.getKP().getKortti(nappula.index()+1));
+        System.out.println(peli.getKP().getKortti(nappula.index() + 1));
         return true;
     }
+    
+    ActionListener taskPerformer = new ActionListener() {
+        public void actionPerformed(ActionEvent evt) {
+            nollaaAvatut();
+        }
+    };
+
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -358,103 +355,199 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[0]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[0]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].sumenna();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[2]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[2]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[1]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[1]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[3]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[3]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[4]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[4]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[5]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[5]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[6]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[6]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[7]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[7]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton8ActionPerformed
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[8]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[8]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton9ActionPerformed
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[9]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[9]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton10ActionPerformed
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[10]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[10]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[11]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[11]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton12ActionPerformed
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[12]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[12]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton13ActionPerformed
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[13]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[13]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton14ActionPerformed
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[14]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[14]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        if (tarkistaAvatut(nappulat[15]) == 2) {
-            nollaaAvatut();
+        if (tarkistaAvatut(nappulat[15]) == 1) {
+            for (int i = 0; i < nappulat.length; i++) {
+                nappulat[i].lukitse();
+            }
+            Timer kello = new Timer(1500, taskPerformer);
+            kello.setRepeats(false);
+            kello.start();
+            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton16ActionPerformed
 
@@ -479,13 +572,13 @@ public class NewJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Peli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Peli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Peli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Peli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -495,7 +588,7 @@ public class NewJFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new NewJFrame().setVisible(true);
+                new Peli().setVisible(true);
             }
         });
     }
