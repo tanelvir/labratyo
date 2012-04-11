@@ -5,6 +5,9 @@
 package labra;
 
 /**
+ * 
+ * Tämä luokka yhdistää korttipakan ja pelaajan, eli siis nytten pelaaja tuntee korttipakan.
+ * Tämä on graafisen pelin ydin, jonka kanssa luokka Peli kommunikoi.
  *
  * @author tanelvir
  */
@@ -22,9 +25,23 @@ public class logiikka {
     Kortti[] taulukko;
     
     
-    public logiikka() {
+    /**
+     * KESKEN: pelaajamäärä määrää pelin logiikan.
+     * 
+     * @param pelaajamaara
+     * @param nimi1
+     * @param nimi2 
+     */
+    
+    
+    public logiikka(int pelaajamaara, String nimi1, String nimi2) {
         peli = new KorttiPakka();
-        aloitaHarjoituspeli();
+        if (pelaajamaara==1) {
+            aloitaHarjoituspeli();
+        }
+        else {
+            aloitaOikeaPeli(nimi1, nimi2);
+        }
     }
     
     public Pelaaja Pelaajan1Nimi(String nimi) {
@@ -37,10 +54,33 @@ public class logiikka {
         return pelaaja2;
     }
     
+    /**
+     * Arvottu järjestys
+     */
+    
     public void aloitaPeli() {        
         peli.sekoitusArvottu();
         pelaaja2.otaVuoro();
     }
+    
+    /**
+     * Tämä on se peli, jota pelaataan Pelissä kaksinpelinä
+     * 
+     * @param nimi1
+     * @param nimi2 
+     */
+    
+    public void aloitaOikeaPeli(String nimi1, String nimi2) {
+        Pelaajan1Nimi(nimi1);
+        Pelaajan1Nimi(nimi2);
+        peli = new KorttiPakka();
+        peli.sekoitusArvottu();
+        pelaaja2.otaVuoro();
+    }
+    
+    /**
+     * Tämä on testejä varten.
+     */
     
     public void aloitaHarjoituspeli() {
         Pelaajan1Nimi("Esimerkki");
@@ -49,73 +89,10 @@ public class logiikka {
         tehosekoitin = new KorttiPakka();
         tehosekoitin.sekoitusEiArvottu();
         peli = tehosekoitin;
-        taulukko = luoTaulukko(peli);
         pelaaja2.otaVuoro();
     }
     
-    public Kortti[] luoTaulukko(KorttiPakka peli) {
-        Kortti[] taulu = new Kortti[peli.korttejaYhteensa()];
-        for (int i = 0; i < peli.korttejaYhteensa(); i++) {
-            taulu[i] = peli.getKortti(i);
-        }      
-        return taulu;
-    }
     
-   /** public void valitseEnsimmainenPelaaja1(int valinta) {
-        pelaaja1.ekaKerta(valinta);
-    }
-    
-    public void valitseEnsimmainenPelaaja2(int valinta) {
-        pelaaja2.ekaKerta(valinta);
-    }
-    
-    public void valitseToinenPelaaja1(int valinta) {
-        pelaaja1.tokakerta(valinta);
-    }
-    
-    public void valitseToinenPelaaja2(int valinta) {
-        pelaaja2.tokakerta(valinta);
-    }
-    
-    
-    public int pelaajan1Valinta1() {
-        return pelaaja1.getValinta1();
-    }
-    
-    public int pelaajan1Valinta2() {
-        return pelaaja1.getValinta2();
-    }
-    
-    public int pelaajan2Valinta1() {
-        return pelaaja2.getValinta1();
-    }
-    
-    public int pelaajan2Valinta2() {
-        return pelaaja2.getValinta2();
-    }
-    
-    public int palautaPelaajan1Pisteet() {
-        return pelaaja1.getPisteet();
-    }
-    
-    public int palautaPelaajan2Pisteet() {
-        return pelaaja2.getPisteet();
-    } **/
-    
-    public void Arvaus(int vastaus1, int vastaus2, Kortti[] peli) {
-        if (getPelaaja1().getVuoro()==true) {
-            pelaaja1.arvausTaulu(vastaus1, vastaus2, taulukko);
-            vaihdaVuoro();
-            System.out.println(pelaaja2.getVuoro());
-            System.out.println(vastaus1 + " :: " + vastaus2);
-        }
-        else { 
-            pelaaja2.arvausTaulu(vastaus1, vastaus2, peli);           
-            vaihdaVuoro();
-            System.out.println(pelaaja2.getVuoro());
-            System.out.println(vastaus1 + " :: " + vastaus2);
-        }
-    }
     
     public ImageIcon kuvake(int i) {
         return taulukko[i].getKuva();       
@@ -141,16 +118,36 @@ public class logiikka {
         return this.peli;
     }
     
+    /**
+     * Etsitään kortti tämän hetken pakasta.
+     * 
+     * @param i
+     * @return löytyikö kortti vai ei
+     */
+    
     public boolean etsiSeKortti(int i) {
         if (getKP().etsiKortti(i)==true)
             return true;
         else return false;
     }
     
+    /**
+     * Ensimmäinen kortti valittuna.
+     * 
+     * @param valinta
+     * @param pelaaja, valintoineen
+     */
+    
     public void ekaKerta(int valinta, Pelaaja pelaaja) {
         pelaaja.Valinta1 = valinta;
         pelaaja.vaihdaKerta();
     }
+    
+    /**
+     * Toinen kortti valittuna.
+     * @param valinta
+     * @param pelaaja 
+     */
     
     public void tokakerta(int valinta, Pelaaja pelaaja) {
         pelaaja.Valinta2 = valinta;
@@ -167,6 +164,12 @@ public class logiikka {
         else
             return "Pelaajan " + pelaaja2.getNimi() + " vuoro";
     }
+    
+    /**
+     * Tämä toimii jakajana, joka tietää kumman pelaajan vuoro ja kerta on kyseessä. Erilaisia vaihtoehtoja on siis 4.
+     * 
+     * @param valinta 
+     */
     
     public void pelaajanVastaus(int valinta) {
         System.out.println("Pelaaja1 vuorot: " + (getPelaaja1().getKerta() + " " + getPelaaja1().getVuoro()));
@@ -202,6 +205,17 @@ public class logiikka {
         System.out.println(peli.getKortit());
         return peli.getKortit();
     }
+    
+    /**
+     * Tämä metodi katsoo onko parametreinä annetut kortit pari kyseisessä pakassa.
+     * Toimii siis ikäänkuin "tuomarina" ja anta pisteet.
+     * 
+     * @param valinta1
+     * @param valinta2
+     * @param peli
+     * @param pelaaja
+     * @return 
+     */
     
     public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli, Pelaaja pelaaja) {
       if (peli.etsiKortti(valinta1)==true && peli.etsiKortti(valinta2)==true) {  

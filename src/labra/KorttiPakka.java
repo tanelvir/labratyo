@@ -13,6 +13,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
+ * 
+ * Tämä on korteita muodostuva pakka, joka tuntee korttinsa.
  *
  * @author tanelvir
  */
@@ -35,10 +37,22 @@ public class KorttiPakka {
         kortit = new HashMap();
         arvotut = new ArrayList();
     }
+    
+    /**
+     * 
+     * Luo pakan jossa on arvotut kortit.
+     * 
+     * @param arvotut 
+     */
     public void setArvotut(ArrayList<Integer> arvotut) {
         arvotut = kuvanArpoja();
         this.arvotut = arvotut;
     }
+    
+    /**
+     * Arpoo satunnaisluvun perusteella kortille kuvan.
+     * @return 
+     */
     public ArrayList kuvanArpoja() {
         ArrayList<Integer> lista = new ArrayList<Integer>();
         for (int i = 1; i <= 16; i++) {
@@ -65,25 +79,10 @@ public class KorttiPakka {
         return kortit;
     }
     
-    public Kortti[] sekoitusEiArvottuTaulu() {
-        Kortti[] taulukko = new Kortti[kortit.size()];
-        for (int i = 1; i <= kortit.size(); i++) {
-            kuvake = new Kortti(i);
-            taulukko[i] = kuvake;
-        }
-        return taulukko;
-    }
-    
-    public Kortti[] sekoitusArvottuTaulu() {
-        arvotut = kuvanArpoja();
-        System.out.println(arvotut);
-        Kortti[] taulukko = new Kortti[arvotut.size()];
-        for (int i = 0; i < arvotut.size(); i++) {
-            kuvake = new Kortti(arvotut.get(i));
-            taulukko[i] = kuvake;
-        }
-        return taulukko;
-    }
+    /**
+     * Ei arvottu pakka.
+     * @return 
+     */
     
     public HashMap sekoitusEiArvottu() {
         for (int i = 1; i <= 16; i++) {
@@ -162,6 +161,11 @@ public class KorttiPakka {
     public int korttejaYhteensa() {
        return kortit.size();
     }
+    
+    /**
+     * Tulostetaan kyseinen pakka.
+     * @return 
+     */
     
     public String toString() {
         return ""+kortit;

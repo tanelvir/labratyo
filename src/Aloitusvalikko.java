@@ -4,7 +4,9 @@
  */
 
 /**
- *
+ * Pelaaja valitsee joko yksin tai kaksinpelin tai sulkee ohjelman.
+ * 
+ * 
  * @author tanelvir
  */
 import java.awt.*;
@@ -66,17 +68,17 @@ public class Aloitusvalikko extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
             .addGroup(layout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(kaksinPeli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(yksinPeli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lopetusNappi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(138, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(75, 75, 75))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +99,7 @@ public class Aloitusvalikko extends javax.swing.JFrame {
 
     private void kaksinPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kaksinPeliActionPerformed
         // TODO add your handling code here:
-        Pelaajavalinta aloitus = new Pelaajavalinta();
+        Pelaajavalinta aloitus = new Pelaajavalinta(2);
         this.setVisible(false);
         aloitus.setVisible(true);
         
@@ -105,7 +107,7 @@ public class Aloitusvalikko extends javax.swing.JFrame {
 
     private void yksinPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yksinPeliActionPerformed
         // TODO add your handling code here:
-        Pelaajavalinta aloitus = new Pelaajavalinta();
+        Pelaajavalinta aloitus = new Pelaajavalinta(1);
         this.setVisible(false);
         aloitus.setVisible(true);
         

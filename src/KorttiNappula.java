@@ -4,6 +4,8 @@
  */
 
 /**
+ * 
+ * Tämä on JButtonin korvaava korttinappula, johon siis liittyy kortti.
  *
  * @author tanelvir
  */
@@ -20,6 +22,14 @@ public class KorttiNappula extends JButton {
     Kortti kortti;
     int index;
     JButton painike;
+    
+    /**
+     * Luodaan nappula, jolla on oma JButton ja indeksi.
+     * 
+     * @param numero
+     * @param indeksi
+     * @param nappula 
+     */
 
     public KorttiNappula(int numero, int indeksi, JButton nappula) {
         kortti = new Kortti(numero);
@@ -40,7 +50,13 @@ public class KorttiNappula extends JButton {
         painike.setEnabled(false);
         return painike;
     }
-
+    
+    /**
+     * Ikoni katoaa. Ja teksti tulee takaisin.
+     * 
+     * @param teksti
+     * @return kortti kuvapuoli alaspäin.
+     */
     public JButton kaannaKortti(String teksti) {
         painike.setText(teksti);
         painike.setIcon(null);
@@ -51,16 +67,22 @@ public class KorttiNappula extends JButton {
     public int getIndeksi() {
         return this.kortti.getIndeksi();
     }
+    
+    /**
+     * Korttia ei voi painaa toista kertaa.
+     * 
+     * @return kortti sumennettuna.
+     */
 
     public JButton sumenna() {
         painike.setEnabled(false);
         return painike;
     }
     
-    public JButton lukitse() {
-        painike.setEnabled(false);
-        return painike;
-    }
+    /**
+     * Palauttaa kortin indeksin.
+     * @return 
+     */
 
     public int index() {
         return this.index;

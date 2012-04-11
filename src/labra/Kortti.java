@@ -99,6 +99,12 @@ public class Kortti {
         return this.indeksi;
     }
     
+    /**
+     * Onko korttien indeksit samat,ei overridaa alkuperäistä equals metodia.
+     * 
+     * @param kortti
+     * @return 
+     */
     
     public boolean equals(Kortti kortti) {
         return this.indeksi == kortti.getIndeksi();
