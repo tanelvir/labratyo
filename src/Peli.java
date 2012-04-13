@@ -36,8 +36,23 @@ public class Peli extends javax.swing.JFrame {
      * @param ensimmäisen pelaajan nimi
      * @param toisen pelaajan nimi
      */
+    public Peli() {
+        initComponents();
+    }
+    
+    public void settaaArvot(int pelaajamaara, String nimi1, String nimi2) {
+        System.out.println("vaihe 1");
+        System.out.println(nimi1 + " pelissä: " + nimi2);
+        this.peli = new logiikka(pelaajamaara, nimi1, nimi2);
+        System.out.println("vaihe 2");
+        avattujaKortteja = 0;
+        System.out.println("vaihe 3");
+        nappulat = luonti(peli);
+        System.out.println("kaikki");
+    } 
+    
     public Peli(int pelaajamaara, String nimi1, String nimi2) {
-        peli = new logiikka(pelaajamaara, nimi1, nimi2);
+        this.peli = new logiikka(pelaajamaara, nimi1, nimi2);
         avattujaKortteja = 0;
         initComponents();
         nappulat = luonti(peli);
@@ -631,7 +646,8 @@ public class Peli extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Peli(pelaajat, pelaaja1nimi, pelaaja2nimi).setVisible(true);
+                //new Peli(pelaajat, pelaaja1nimi, pelaaja2nimi).setVisible(true);
+                new Peli().setVisible(true);
             }
         });
     }

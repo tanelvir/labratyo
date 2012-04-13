@@ -33,6 +33,7 @@ public class Pelaaja {
      *
      */
     public Pelaaja(String nimesi) {
+        System.out.println("pelaajan " + nimesi);
         nimi = nimesi;
         pisteet = 0;
         kerta = 1;
@@ -207,12 +208,12 @@ public class Pelaaja {
         }
     }
 
-    public boolean annaVuoro() {
-        return vuoro = true;
+    public void annaVuoro() {
+        vuoro = true;
     }
 
-    public boolean otaVuoro() {
-        return vuoro = false;
+    public void otaVuoro() {
+        vuoro = false;
     }
 
     public boolean getVuoro() {

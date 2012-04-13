@@ -136,7 +136,11 @@ public class Pelaajavalinta extends javax.swing.JFrame {
         // TODO add your handling code here:
         String teksti1 = jTextField1.getText();
         String teksti2 = jTextField2.getText();
-        peli = new Peli(pelaajat, teksti1, teksti2);
+        System.out.println("Pelaajat: " + pelaajat);
+        //peli = new Peli(pelaajat, teksti1, teksti2);
+        peli = new Peli();
+        System.out.println(pelaajat + " P " + teksti1 + " J " + teksti2);
+        peli.settaaArvot(pelaajat, teksti1, teksti2);
         this.setVisible(false);
         peli.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed

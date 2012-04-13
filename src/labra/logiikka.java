@@ -22,7 +22,6 @@ public class logiikka {
     Pelaaja pelaaja2;
     KorttiPakka peli; // = new KorttiPakka();
     KorttiPakka tehosekoitin;
-    Kortti[] taulukko;
     
     
     /**
@@ -35,30 +34,20 @@ public class logiikka {
     
     
     public logiikka(int pelaajamaara, String nimi1, String nimi2) {
-        peli = new KorttiPakka();
         if (pelaajamaara==1) {
             aloitaHarjoituspeli();
         }
         else {
+            System.out.println("oikeapelialkaa");
             aloitaOikeaPeli(nimi1, nimi2);
         }
-    }
-    
-    public Pelaaja Pelaajan1Nimi(String nimi) {
-        pelaaja1 = new Pelaaja(nimi);
-        return pelaaja1;
-    }
-    
-    public Pelaaja Pelaajan2Nimi(String nimi) {
-        pelaaja2 = new Pelaaja(nimi);
-        return pelaaja2;
     }
     
     /**
      * Arvottu järjestys
      */
     
-    public void aloitaPeli() {        
+    private void aloitaPeli() {        
         peli.sekoitusArvottu();
         pelaaja2.otaVuoro();
     }
@@ -70,11 +59,15 @@ public class logiikka {
      * @param nimi2 
      */
     
-    public void aloitaOikeaPeli(String nimi1, String nimi2) {
-        Pelaajan1Nimi(nimi1);
-        Pelaajan1Nimi(nimi2);
+    private void aloitaOikeaPeli(String nimi1, String nimi2) {
+        System.out.println(nimi1 + " aloitaPelinalku " + nimi2);
+        pelaaja1 = new Pelaaja(nimi1);
+        pelaaja2 = new Pelaaja(nimi2);
+        System.out.println(pelaaja1.getNimi() + "LOL" + pelaaja2.getNimi());
         peli = new KorttiPakka();
-        peli.sekoitusArvottu();
+        tehosekoitin = new KorttiPakka();
+        tehosekoitin.sekoitusArvottu();
+        peli = tehosekoitin;
         pelaaja2.otaVuoro();
     }
     
@@ -82,9 +75,9 @@ public class logiikka {
      * Tämä on testejä varten.
      */
     
-    public void aloitaHarjoituspeli() {
-        Pelaajan1Nimi("Esimerkki");
-        Pelaajan2Nimi("Erkki");
+    private void aloitaHarjoituspeli() {
+        pelaaja1 = new Pelaaja("Esimerkki");
+        pelaaja2 = new Pelaaja("Erkki");
         peli = new KorttiPakka();
         tehosekoitin = new KorttiPakka();
         tehosekoitin.sekoitusEiArvottu();
@@ -95,15 +88,15 @@ public class logiikka {
     
     
     public ImageIcon kuvake(int i) {
-        return taulukko[i].getKuva();       
+        return peli.getKuvake(i);       
     }
     
     public int indeksi(int i) {
-        return taulukko[i].getIndeksi();
+        return getKortti(i).getIndeksi();
     }
     
     public Kortti getKortti(int i) {
-        return taulukko[i];
+        return peli.getKortti(i);
     }
     
     public Pelaaja getPelaaja1() {
