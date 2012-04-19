@@ -15,16 +15,21 @@ public class Pelaajavalinta extends javax.swing.JFrame {
      */
     Peli peli;
     static int pelaajat;
+
     public Pelaajavalinta(int pelaajamaara) {
-        if (pelaajamaara==1) {
+        if (pelaajamaara == 1) {
             pelaajat = 1;
-        }
-        else {
+        } else {
             pelaajat = 2;
         }
-        
+
         initComponents();
-        
+
+    }
+
+    public void piiloita() {
+        jTextField2.setSize(0, 0);
+        jLabel2.setSize(0, 0);
     }
 
     /**
@@ -146,7 +151,7 @@ public class Pelaajavalinta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**

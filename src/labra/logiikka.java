@@ -22,6 +22,7 @@ public class logiikka {
     Pelaaja pelaaja2;
     KorttiPakka peli; // = new KorttiPakka();
     KorttiPakka tehosekoitin;
+    boolean mod;
     
     
     /**
@@ -35,11 +36,12 @@ public class logiikka {
     
     public logiikka(int pelaajamaara, String nimi1, String nimi2) {
         if (pelaajamaara==1) {
-            aloitaHarjoituspeli();
+            aloitaYksinPeli(nimi1);
+            mod = false;
         }
         else {
-            System.out.println("oikeapelialkaa");
-            aloitaOikeaPeli(nimi1, nimi2);
+            aloitaKaksinPeli(nimi1, nimi2);
+            mod = true;
         }
     }
     
@@ -53,13 +55,28 @@ public class logiikka {
     }
     
     /**
+     * Tämä on se peli, jota pelaataan Pelissä yksinpelinä
+     * 
+     * @param nimi1
+     */
+    
+    private void aloitaYksinPeli(String nimi1) {
+        pelaaja1 = new Pelaaja(nimi1);
+        peli = new KorttiPakka();
+        tehosekoitin = new KorttiPakka();
+        tehosekoitin.sekoitusArvottu();
+        peli = tehosekoitin;
+        
+    }
+    
+    /**
      * Tämä on se peli, jota pelaataan Pelissä kaksinpelinä
      * 
      * @param nimi1
      * @param nimi2 
      */
     
-    private void aloitaOikeaPeli(String nimi1, String nimi2) {
+    private void aloitaKaksinPeli(String nimi1, String nimi2) {
         System.out.println(nimi1 + " aloitaPelinalku " + nimi2);
         pelaaja1 = new Pelaaja(nimi1);
         pelaaja2 = new Pelaaja(nimi2);
@@ -147,8 +164,10 @@ public class logiikka {
     }
     
     public void vaihdaVuoro() {
-        getPelaaja1().vaihdaVuoro();
-        getPelaaja2().vaihdaVuoro();
+        if (mod==true) {
+            getPelaaja1().vaihdaVuoro();
+            getPelaaja2().vaihdaVuoro();
+        }
     }
     
     public String vuoro() {
@@ -159,14 +178,12 @@ public class logiikka {
     }
     
     /**
-     * Tämä toimii jakajana, joka tietää kumman pelaajan vuoro ja kerta on kyseessä. Erilaisia vaihtoehtoja on siis 4.
+     * Tämä toimii jakajana kaksinpelissä, joka tietää kumman pelaajan vuoro ja kerta on kyseessä. Erilaisia vaihtoehtoja on siis 4.
      * 
      * @param valinta 
      */
     
     public void pelaajanVastaus(int valinta) {
-        System.out.println("Pelaaja1 vuorot: " + (getPelaaja1().getKerta() + " " + getPelaaja1().getVuoro()));
-        System.out.println("Pelaaja2 vuorot: " + (getPelaaja2().getKerta() + " " + getPelaaja2().getVuoro()));
         if (getPelaaja1().getKerta()==1 && getPelaaja1().getVuoro()==true) {
             ekaKerta(valinta, getPelaaja1());
         }
@@ -184,6 +201,23 @@ public class logiikka {
             vaihdaVuoro();
         }
         else System.out.println("ERROR");
+    }
+    
+    /**
+     * Tämä toimii jakajana kaksinpelissä, joka tietää kumman pelaajan vuoro ja kerta on kyseessä. Erilaisia vaihtoehtoja on siis 4.
+     * 
+     * @param valinta 
+     */
+    
+    public void pelaajanVastausYksin(int valinta) {
+        System.out.println(getPelaaja1().getNimi() + "vuorot: " + (getPelaaja1().getKerta() + " " + getPelaaja1().getVuoro()));
+        if (getPelaaja1().getKerta()==1 && getPelaaja1().getVuoro()==true) {
+            ekaKerta(valinta, getPelaaja1());
+        }
+        else if (getPelaaja1().getKerta()==2 && getPelaaja1().getVuoro()==true) {
+            tokakerta(valinta, getPelaaja1());
+            arvausKerta(getPelaaja1().getValinta1(), getPelaaja1().getValinta2(), peli, getPelaaja1());
+        }
     }
     
     public HashMap poistaTurhat(Kortti[] taulu) {

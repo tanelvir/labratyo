@@ -28,6 +28,7 @@ public class Peli extends javax.swing.JFrame {
     static int pelaajat;
     static String pelaaja1nimi;
     static String pelaaja2nimi;
+    boolean mod;
 
     /**
      * Luodaan peli sen mukaan kuinka paljon on pelaajia
@@ -44,6 +45,13 @@ public class Peli extends javax.swing.JFrame {
         System.out.println("vaihe 1");
         System.out.println(nimi1 + " pelissä: " + nimi2);
         this.peli = new logiikka(pelaajamaara, nimi1, nimi2);
+        if (pelaajamaara==1) {
+            jLabel4.setVisible(false);
+            mod = false;
+        }
+        else if (pelaajamaara==2) {
+            mod = true;
+        }
         System.out.println("vaihe 2");
         avattujaKortteja = 0;
         System.out.println("vaihe 3");
@@ -81,13 +89,14 @@ public class Peli extends javax.swing.JFrame {
             System.out.println("-" + nappula.getKortti());
             System.out.println("-" + peli.indeksi(nappula.getIndeksi()));
             System.out.println("-" + nappula.getKuvake());
-
         } else {
             nappula.sumenna();
         }
-        jLabel2.setText("" + peli.vuoro());
-        jLabel3.setText("" + peli.getPelaaja1().getPisteet());
-        jLabel4.setText("" + peli.getPelaaja2().getPisteet());
+        jLabel3.setText("" + peli.getPelaaja1().getNimi() + ": " + peli.getPelaaja1().getPisteet());
+        if (mod==true) {
+            jLabel2.setText("" + peli.vuoro());
+            jLabel4.setText("" + peli.getPelaaja2().getNimi() + ": " + peli.getPelaaja2().getPisteet());
+        }
         if (avattujaKortteja < 2) {
             return avattujaKortteja++;
         }
