@@ -49,8 +49,8 @@ public class logiikka {
      * Arvottu järjestys
      */
     
-    private void aloitaPeli() {        
-        peli.sekoitusArvottu();
+    public void aloitaharjoitusPeli() {        
+        peli.sekoitusEiArvottu();
         pelaaja2.otaVuoro();
     }
     
@@ -77,10 +77,9 @@ public class logiikka {
      */
     
     private void aloitaKaksinPeli(String nimi1, String nimi2) {
-        System.out.println(nimi1 + " aloitaPelinalku " + nimi2);
         pelaaja1 = new Pelaaja(nimi1);
         pelaaja2 = new Pelaaja(nimi2);
-        System.out.println(pelaaja1.getNimi() + "LOL" + pelaaja2.getNimi());
+        System.out.println("Peli alkaa!");
         peli = new KorttiPakka();
         tehosekoitin = new KorttiPakka();
         tehosekoitin.sekoitusArvottu();
@@ -249,11 +248,9 @@ public class logiikka {
         if (peli.getKortti(valinta1).getIndeksi()==peli.getKortti(valinta2).getIndeksi()) {
             pelaaja.pisteet++;
             pelaaja.vaihdaKerta();
-            System.out.println("1"+peli);
             peli.poista(valinta1, valinta2);
 //            System.out.println(peli.getKortti(valinta1).getIndeksi() + " aK " + peli.getKortti(valinta2).getIndeksi());
             System.out.println(pelaaja.ilmoitus(true));
-            System.out.println("2"+peli);
             return peli;
         }
         else {

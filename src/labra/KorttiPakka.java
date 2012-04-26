@@ -144,7 +144,6 @@ public class KorttiPakka {
     }
     
     public ImageIcon getKuvake(int luku) {
-        System.out.println(kortit.get(luku).getKuva());
         return kortit.get(luku).getKuva();       
     }
     

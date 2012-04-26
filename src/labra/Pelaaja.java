@@ -33,7 +33,7 @@ public class Pelaaja {
      *
      */
     public Pelaaja(String nimesi) {
-        System.out.println("pelaajan " + nimesi);
+        System.out.println("Pelaaja: " + nimesi + " luotu");
         nimi = nimesi;
         pisteet = 0;
         kerta = 1;
@@ -105,7 +105,6 @@ public class Pelaaja {
                 pisteet++;
                 vaihdaKerta();
                 peli.poista(valinta1, valinta2);
-                //System.out.println(peli.getKortti(valinta1).getIndeksi() + " " + peli.getKortti(valinta2).getIndeksi());
                 System.out.println(ilmoitus(true));
                 return peli;
             } else {

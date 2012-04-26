@@ -37,7 +37,7 @@ public class LogiikkaTest {
     
     @Before
     public void setUp() {
-        peli.aloitaHarjoituspeli();
+        peli.aloitaharjoitusPeli();
         pakka = new KorttiPakka();
         pakka.sekoitusEiArvottu();
     }
@@ -70,7 +70,7 @@ public class LogiikkaTest {
     @Test
     public void samatKortit() { 
         peli.arvausKerta(1, 9, peli.getKP(), peli.getPelaaja1());  
-        assertFalse(peli.getKP().korttejaYhteensa()==14);
+        assertTrue(peli.getKP().korttejaYhteensa()==14);
     }
     
     @Test
