@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package labra;
 
 /**
  *
- * Tämä luokka yhdistää korttipakan ja pelaajan, eli siis nytten pelaaja tuntee
+ * Tämä luokka yhdistää korttipakan ja pelaajan, eli siis nyt pelaaja tuntee
  * korttipakan. Tämä on graafisen pelin ydin, jonka kanssa luokka Peli
  * kommunikoi.
  *
@@ -21,12 +17,12 @@ public class logiikka {
 
     Pelaaja pelaaja1;
     Pelaaja pelaaja2;
-    KorttiPakka peli; // = new KorttiPakka();
+    KorttiPakka peli;
     KorttiPakka tehosekoitin;
     boolean mod;
 
     /**
-     * KESKEN: pelaajamäärä määrää pelin logiikan.
+     * Luodaan logiikka yksin- tai kaksinpelille.
      *
      * @param pelaajamaara
      * @param nimi1
@@ -43,7 +39,7 @@ public class logiikka {
     }
 
     /**
-     * Arvottu järjestys
+     * Tämä on testejä varten arpomaton järjestys.
      */
     public void aloitaharjoitusPeli() {
         peli.sekoitusEiArvottu();
@@ -77,19 +73,6 @@ public class logiikka {
         peli = new KorttiPakka();
         tehosekoitin = new KorttiPakka();
         tehosekoitin.sekoitusArvottu();
-        peli = tehosekoitin;
-        pelaaja2.otaVuoro();
-    }
-
-    /**
-     * Tämä on testejä varten.
-     */
-    private void aloitaHarjoituspeli() {
-        pelaaja1 = new Pelaaja("Esimerkki");
-        pelaaja2 = new Pelaaja("Erkki");
-        peli = new KorttiPakka();
-        tehosekoitin = new KorttiPakka();
-        tehosekoitin.sekoitusEiArvottu();
         peli = tehosekoitin;
         pelaaja2.otaVuoro();
     }
@@ -207,6 +190,11 @@ public class logiikka {
             arvausKerta(getPelaaja1().getValinta1(), getPelaaja1().getValinta2(), peli, getPelaaja1());
         }
     }
+    
+    /**
+     * Postetaan turhat kortit HashMapista, jos alkuperäisessä taulussa ei ole enää korttia.
+     * @return getHajautus()
+     */
 
     public HashMap poistaTurhat(Kortti[] taulu) {
         for (int i = 0; i < taulu.length; i++) {
@@ -216,6 +204,13 @@ public class logiikka {
         }
         return getHajautus();
     }
+    
+    /**
+     * 
+     * Tulostaa tämän hetkiset pakan kortit.
+     * 
+     * @return pelin kortit HashMapissa. 
+     */
 
     public HashMap getHajautus() {
         System.out.println(peli.getKortit());
@@ -224,7 +219,7 @@ public class logiikka {
 
     /**
      * Tämä metodi katsoo onko parametreinä annetut kortit pari kyseisessä
-     * pakassa. Toimii siis ikäänkuin "tuomarina" ja anta pisteet.
+     * pakassa. Toimii siis ikäänkuin "tuomarina" ja antaa pisteet.
      *
      * @param valinta1
      * @param valinta2
@@ -239,7 +234,6 @@ public class logiikka {
                 pelaaja.pisteet++;
                 pelaaja.vaihdaKerta();
                 peli.poista(valinta1, valinta2);
-//            System.out.println(peli.getKortti(valinta1).getIndeksi() + " aK " + peli.getKortti(valinta2).getIndeksi());
                 System.out.println(pelaaja.ilmoitus(true));
                 return peli;
             } else {
@@ -252,6 +246,10 @@ public class logiikka {
             return peli;
         }
     }
+    
+    /**
+     * Tarkistaa kumpi pelaaja voitti pelin ja tulostaa sen.
+     */
 
     public void voittoTarkistus() {
         if (peli.korttejaYhteensa() == 0) {

@@ -2,16 +2,12 @@ package labra;
 
 import labra.KorttiPakka;
 import labra.Kortti;
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
 
 /**
  *
  * Tämän luokan tarkoituksena on luoda pelaaja, joka voi valita kortin ja jolla
- * on oma pistetili. Kun pelataan kaksinpeliä luodaan 2 pelaajaa. Täydennyksiä
- * on vielä tulossa.
+ * on oma pistetili. Lisäksi hänellä on kerrat, vuorot ja nimi. 
+ * Kun pelataan kaksinpeliä luodaan 2 pelaajaa.
  *
  * @author tanelvir
  */
@@ -118,42 +114,6 @@ public class Pelaaja {
         }
     }
     
-    /**
-     * 
-     * Etsitään kortti taulusta.
-     * 
-     * @param i
-     * @param taulukko
-     * @return löytyikö kortti vai ei.
-     */
-
-    public boolean etsiKorttiTaulusta(int i, Kortti[] taulukko) {
-        if (taulukko[i] != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public Kortti[] arvausTaulu(int valinta1, int valinta2, Kortti[] peli) {
-        if (etsiKorttiTaulusta(valinta1, peli) == true && etsiKorttiTaulusta(valinta2, peli) == true) {
-            if (peli[valinta1].equals(peli[valinta2])) {
-                pisteet++;
-                vaihdaKerta();
-                peli[valinta1] = null;
-                peli[valinta2] = null;
-                //System.out.println(peli.getKortti(valinta1).getIndeksi() + " " + peli.getKortti(valinta2).getIndeksi());
-                System.out.println(ilmoitus(true));
-                return peli;
-            } else {
-                vaihdaKerta();
-                System.out.println(peli[valinta1].getIndeksi() + " " + peli[valinta2].getIndeksi());
-                System.out.println(ilmoitus(false));
-                return peli;
-            }
-        } else {
-            return peli;
-        }
-    }
 
     /**
      * Ilmoitetaan saiko pelaaja oikein vai ei.
@@ -187,7 +147,7 @@ public class Pelaaja {
     }
 
     /**
-     * Tässä vaihdetaan kerta kun vuoroja on kulunut kolme. Boolean systeemi
+     * Tässä vaihdetaan kerta kun vuoroja on kulunut kaksi.
      * voisi olla järkevämpi.
      *
      */

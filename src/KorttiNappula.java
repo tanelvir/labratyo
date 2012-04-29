@@ -81,7 +81,7 @@ public class KorttiNappula extends JButton {
     
     /**
      * Palauttaa kortin indeksin.
-     * @return 
+     * @return index
      */
 
     public int index() {

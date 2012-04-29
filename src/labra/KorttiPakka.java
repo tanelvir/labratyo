@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package labra;
 
 import java.util.HashMap;
@@ -14,7 +10,7 @@ import javax.swing.*;
 
 /**
  * 
- * Tämä on korteita muodostuva pakka, joka tuntee korttinsa.
+ * Tämä on korteista muodostuva pakka, joka tuntee korttinsa.
  *
  * @author tanelvir
  */
@@ -115,13 +111,6 @@ public class KorttiPakka {
     
     public boolean etsiKortti(int luku) {
         if (kortit.containsKey(luku)) {
-            return true;
-        }
-        else return false;                 
-    }
-    
-    public boolean etsiItseKortti(Kortti kortti) {
-        if (kortit.containsValue(kortti)) {
             return true;
         }
         else return false;                 
