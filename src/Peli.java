@@ -38,6 +38,13 @@ public class Peli extends javax.swing.JFrame {
     public Peli() {
         initComponents();
     }
+    
+    /**
+     * Asetetaan pelin modiksi joko yksin- tai kaksinpeli.
+     * @param pelaajamaara
+     * @param nimi1
+     * @param nimi2 
+     */
 
     public void settaaArvot(int pelaajamaara, String nimi1, String nimi2) {
         this.peli = new logiikka(pelaajamaara, nimi1, nimi2);
@@ -57,7 +64,6 @@ public class Peli extends javax.swing.JFrame {
         avattujaKortteja = 0;
         initComponents();
         nappulat = luonti(peli);
-//      nappulat = {jButton1,jButton2,jButton3,jButton4,jButton5,jButton6,jButton7,jButton8,jButton9,jButton10,jButton11,jButton12,jButton12,jButton13,jButton14,jButton15,jButton16 };
     }
 
     /**
@@ -75,18 +81,14 @@ public class Peli extends javax.swing.JFrame {
     private int tarkistaAvatut(KorttiNappula nappula) {
         if (tarkistaKortti(nappula) == true) {
             nappula.setKuvake();
-//            nabula.setIcon(nappula.getKuvake());
-//            nabula.setText(null);
-//            nabula.setEnabled(false);
             peli.pelaajanVastaus(nappula.index() + 1);
         } else {
             nappula.sumenna();
         }
         this.jLabel7.setText("" + peli.getPelaaja1().getNimi() + " pisteet: " + peli.getPelaaja1().getPisteet());
         this.jLabel5.setText("" + peli.getPelaaja1().getNimi() + " kerta: " + peli.getPelaaja1().getKerta());
-        //this.jLabel10.setText(""+peli.voittoTarkistus());
+        System.out.println(peli.voittoTarkistus());
         if (mod.equals(Pelimoodi.KAKSINPELI)) {
-            //jLabel2.setText("" + peli.vuoro());
             this.setTitle("" + peli.vuoro());
             jLabel8.setText("" + peli.getPelaaja2().getNimi() + " pisteet: " + peli.getPelaaja2().getPisteet());
             this.jLabel6.setText("" + peli.getPelaaja2().getNimi() + " kerta: " + peli.getPelaaja2().getKerta());
@@ -495,7 +497,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -507,7 +508,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -520,7 +520,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -532,7 +531,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -545,7 +543,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton8ActionPerformed
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -557,7 +554,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton9ActionPerformed
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -569,7 +565,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton10ActionPerformed
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -581,7 +576,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton11ActionPerformed
 
@@ -594,7 +588,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton12ActionPerformed
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -606,7 +599,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton13ActionPerformed
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -618,7 +610,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton14ActionPerformed
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
@@ -630,7 +621,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton15ActionPerformed
 
@@ -643,7 +633,6 @@ public class Peli extends javax.swing.JFrame {
             Timer kello = new Timer(1500, taskPerformer);
             kello.setRepeats(false);
             kello.start();
-            //nollaaAvatut();
         }
     }//GEN-LAST:event_jButton16ActionPerformed
 

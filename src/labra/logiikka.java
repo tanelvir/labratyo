@@ -229,7 +229,7 @@ public class logiikka {
      */
     public KorttiPakka arvausKerta(int valinta1, int valinta2, KorttiPakka peli, Pelaaja pelaaja) {
         voittoTarkistus();
-        if (peli.etsiKortti(valinta1) == true && peli.etsiKortti(valinta2) == true) {
+        if (peli.etsiKortti(valinta1) == true && peli.etsiKortti(valinta2) == true && valinta1!=valinta2) {
             if (peli.getKortti(valinta1).getIndeksi() == peli.getKortti(valinta2).getIndeksi()) {
                 pelaaja.pisteet++;
                 pelaaja.vaihdaKerta();
@@ -251,16 +251,16 @@ public class logiikka {
      * Tarkistaa kumpi pelaaja voitti pelin ja tulostaa sen.
      */
 
-    public void voittoTarkistus() {
+    public String voittoTarkistus() {
         if (peli.korttejaYhteensa() == 0) {
             if (pelaaja1.getPisteet() > pelaaja2.getPisteet()) {
-                System.out.println("" + pelaaja1.getNimi() + " voitti!");
+                return "" + pelaaja1.getNimi() + " voitti!";
             } else if (pelaaja1.getPisteet() < pelaaja2.getPisteet()) {
-                System.out.println("" + pelaaja2.getNimi() + " voitti!");
+                return "" + pelaaja2.getNimi() + " voitti!";
             } else {
-                System.out.println("Tasapeli");
+                return "Tasapeli";
             }
         }
-        else System.out.println("Kortteja yhteensä: "+peli.korttejaYhteensa());
+        else return "Kortteja yhteensä: "+peli.korttejaYhteensa();
     }
 }

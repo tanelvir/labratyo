@@ -16,7 +16,7 @@ import java.util.*;
 public class Aloitusvalikko extends javax.swing.JFrame {
 
     /**
-     * Creates new form Pelinalku
+     * Creates new form Aloitusvalikko
      */
     public Aloitusvalikko() {
         initComponents();
@@ -99,7 +99,7 @@ public class Aloitusvalikko extends javax.swing.JFrame {
 
     private void kaksinPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kaksinPeliActionPerformed
         // TODO add your handling code here:
-        Pelaajavalinta aloitus = new Pelaajavalinta(2);
+        Pelaajiennimet aloitus = new Pelaajiennimet(2);
         this.setVisible(false);
         aloitus.setVisible(true);
         
@@ -107,7 +107,7 @@ public class Aloitusvalikko extends javax.swing.JFrame {
 
     private void yksinPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yksinPeliActionPerformed
         // TODO add your handling code here:
-        Pelaajavalinta aloitus = new Pelaajavalinta(1);
+        Pelaajiennimet aloitus = new Pelaajiennimet(1);
         this.setVisible(false);
         aloitus.setVisible(true);
         

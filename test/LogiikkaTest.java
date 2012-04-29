@@ -15,7 +15,6 @@ import static org.junit.Assert.*;
 public class LogiikkaTest {
     logiikka peli = new logiikka(2, "lolli", "poppi");
     KorttiPakka pakka;
-    Kortti[] taulu;
     
     /**
      * 
@@ -49,8 +48,14 @@ public class LogiikkaTest {
     @Test
     public void oikeinKortit() {
         System.out.println(peli);
-        peli.arvausKerta(1, 1, peli.getKP(), peli.getPelaaja1());    
+        peli.arvausKerta(2, 10, peli.getKP(), peli.getPelaaja1());    
         assertTrue(peli.getPelaaja1().getPisteet()==1);
+    }
+    
+    @Test
+    public void nimiOikein() {
+        assertTrue(peli.getPelaaja1().getNimi()=="lolli");
+        assertTrue(peli.getPelaaja2().getNimi()=="poppi");
     }
     
     @Test
@@ -68,9 +73,9 @@ public class LogiikkaTest {
     }
     
     @Test
-    public void samatKortit() { 
-        peli.arvausKerta(1, 9, peli.getKP(), peli.getPelaaja1());  
-        assertTrue(peli.getKP().korttejaYhteensa()==14);
+    public void samatKortitEiSaaOlla() { 
+        peli.arvausKerta(1, 1, peli.getKP(), peli.getPelaaja1());  
+        assertFalse(peli.getPelaaja1().getPisteet()==1);
     }
     
     @Test
@@ -91,22 +96,15 @@ public class LogiikkaTest {
     
     @Test
     public void pariPoistuu() {
-        peli.getPelaaja1().arvausKertaToinen(1, 9, peli.getKP());
+        peli.arvausKerta(1, 9, peli.getKP(), peli.getPelaaja1());
         assertTrue(peli.getKP().korttejaYhteensa()==14);
     }
     
     @Test
     public void pelaajaSaapisteen() {
-        peli.getPelaaja1().arvausKertaToinen(4, 12, peli.getKP());
+        peli.arvausKerta(1, 9, peli.getKP(), peli.getPelaaja1());
         assertTrue(peli.getPelaaja1().getPisteet()==1);
     }
-    
-//    @Test
-//    public void arvontaToimii() {
-//        peli.Arvaus(1, 9, taulu);
-//        peli.getPelaaja1().arvausKertaToinen(2, 10, pakka);
-//        assertTrue(peli.getPelaaja1().getPisteet()==1);
-//    }   
     
     @Test
     public void samastaParistaeiSaaPisteita() {
